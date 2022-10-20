@@ -56,7 +56,6 @@ def get_products(token):
         products_id.append(id.text)
     products_full = dict(zip(products_list, products_id))
     return products_full
-    return products_full
 
 
 # Получаем словарь контрагентов (название : id)

@@ -26,9 +26,21 @@ def auth_page() -> 'html':
 
 @app.route('/auth', methods=['POST'])
 def main_page() -> str:
+    global login
     login = request.form['login']
+    global password
     password = request.form['password']
+    if str(auth(login=str(login), password=str(password))) == '<Response [200]>':
+        return redirect("/main_page", code=301)
+    else:
+        return render_template('error_page.html',
+                               the_title='Нужно еще пробовать')
+
+
+@app.route("/main_page", methods=['post', 'get'])
+def test_redirect() -> str:
     token = auth(login=login, password=password)
+    print(token)
     stocks = get_stocks(token)
     stocks_name = list(stocks.keys())
     products = get_products(token)
@@ -36,37 +48,13 @@ def main_page() -> str:
     suppliers = get_suppliers(token)
     suppliers_name = list(suppliers.keys())
     logout(token)
-    if str(auth(login=str(login), password=str(password))) == '<Response [200]>':
-        print(token.text)
-        return render_template('main_page_2.html',
-                               the_title='Бланк заявки',
-                               stocks_list=stocks_name,
-                               other_inf='Переменная для будущего',
-                               prod_list=products_name,
-                               suppliers_list=suppliers_name,
-                               datetime_now=date_now)
-        # logout(token)
-    else:
-        return render_template('error_page.html',
-                               the_title='Нужно еще пробовать')
-
-    logout(token)
-
-
-# @app.route("/main_page", methods=['POST'])
-# def main_page(token) -> str:
-#     # token = auth(login=login, password=password)
-#     return render_template('main_page_2.html',
-#                            the_title='Бланк заявки',
-#                            stocks_list=list(get_stocks(token).keys()),
-#                            other_inf='Переменная для будущего',
-#                            prod_list=list(get_products(token).keys()),
-#                            suppliers_list=list(get_suppliers(token).keys()),
-#                            datetime_now=date_now)
-#     logout(token)
-
-
-# logout(token)
+    return render_template("main_page_2.html",
+                           the_title='Бланк заявки',
+                           stocks_list=stocks_name,
+                           other_inf='Переменная для будущего',
+                           prod_list=products_name,
+                           suppliers_list=suppliers_name,
+                           datetime_now=date_now)
 
 
 # Запуск
