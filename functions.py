@@ -7,6 +7,9 @@ import xml
 import os
 import csv
 import xml.etree.ElementTree as ET
+
+from lxml import html
+
 from variables import protocol, server, port, bd
 from datetime import datetime
 
@@ -111,3 +114,30 @@ def post(token, doc):
     headers = {'Content-Type': 'application/xml'}  # set what your server accepts
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
+
+
+def bs4_scrapper():
+    pass
+
+
+# Получение ценовых категорий
+def category_price(token):
+    url = (
+            protocol + '://' + server + ':' + port + bd + '/api/v2/entities/priceCategories/?includeDeleted=true?&key='
+            + token.text
+    )
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'lxml')
+    c = soup.find('p').__dict__
+    cc = c['contents']
+    ccc = cc[0]
+    aa = ccc.string
+    category_id_1 = aa[51:87:]
+    category_id_2 = aa[223:259:]
+    category_id = [category_id_1, category_id_2]
+    category_name_1 = aa[97:109:]
+    category_name_2 = aa[269:279:]
+    category_name = [category_name_1, category_name_2]
+    categories_full = dict(zip(category_name, category_id))
+    return categories_full
+

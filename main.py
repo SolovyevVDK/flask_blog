@@ -1,7 +1,7 @@
 # Импорт библиотек.
 from flask import Flask, render_template, request, redirect
 from werkzeug import Response
-from functions import auth, get_stocks, get_products, get_suppliers, date_now, logout
+from functions import auth, get_stocks, get_products, get_suppliers, date_now, logout, category_price
 import requests
 from variables import protocol, port, server, bd
 
@@ -26,11 +26,12 @@ def auth_page() -> 'html':
 
 @app.route('/auth', methods=['POST'])
 def main_page() -> str:
-    global login
     login = request.form['login']
-    global password
     password = request.form['password']
-    if str(auth(login=str(login), password=str(password))) == '<Response [200]>':
+    global token
+    token = auth(login=str(login), password=str(password))
+    # print(token.text)
+    if str(auth(login=login, password=password)) == '<Response [200]>':
         return redirect("/main_page", code=301)
     else:
         return render_template('error_page.html',
@@ -38,23 +39,34 @@ def main_page() -> str:
 
 
 @app.route("/main_page", methods=['post', 'get'])
-def test_redirect() -> str:
-    token = auth(login=login, password=password)
-    print(token)
+def main_page_zajavka() -> 'html':
+    # print(token.text)
     stocks = get_stocks(token)
     stocks_name = list(stocks.keys())
     products = get_products(token)
     products_name = list(products.keys())
     suppliers = get_suppliers(token)
     suppliers_name = list(suppliers.keys())
-    logout(token)
+    category = category_price(token)
+    category_name = list(category.keys())
+    # logout(token)
+    # consign_date = request.form['datetime']
+    # consign_stock = request.form['stock']
+    # consign_supplier = request.form['suppliers']
     return render_template("main_page_2.html",
                            the_title='Бланк заявки',
                            stocks_list=stocks_name,
                            other_inf='Переменная для будущего',
                            prod_list=products_name,
                            suppliers_list=suppliers_name,
+                           category_list=category_name,
                            datetime_now=date_now)
+
+
+@app.route("/logout", methods=['post'])
+def send():
+    logout(token)
+    return redirect("/", code=301)
 
 
 # Запуск
