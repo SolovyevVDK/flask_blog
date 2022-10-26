@@ -8,7 +8,6 @@ import os
 import csv
 import xml.etree.ElementTree as ET
 
-from lxml import html
 
 from variables import protocol, server, port, bd
 from datetime import datetime
@@ -77,30 +76,31 @@ def get_suppliers(token):
 
 
 # Формирование накладной
-def data(sup, prod, stocks, date, prices, amounts):
+def data(sup, prod, stock, date, prices, amounts, prodlen):
     document = ET.Element('document')
     dateIncoming = ET.SubElement(document, 'dateIncoming')
     useDefaultDocumentTime = ET.SubElement(document, 'useDefaultDocumentTime')
     revenueAccountCode = ET.SubElement(document, 'revenueAccountCode')
     counteragentId = ET.SubElement(document, 'counteragentId')
     items = ET.SubElement(document, 'items')
-    item = ET.SubElement(items, 'item')
-    productId = ET.SubElement(item, 'productId')
-    storeId = ET.SubElement(item, 'storeId')
-    price = ET.SubElement(item, 'price')
-    amount = ET.SubElement(item, 'amount')
-    discountSum = ET.SubElement(item, 'discountSum')
-    sum = ET.SubElement(item, 'sum')
-    dateIncoming.text = date
-    useDefaultDocumentTime.text = 'true'
-    revenueAccountCode.text = '4.01'
-    counteragentId.text = str(sup['api_test'])  # Считать название покупателя со страницы
-    productId.text = str(prod['Кофе зерновой'])  # Считать название продукта со страницы
-    storeId.text = str(stocks['test_goose'])  # Считать название склада отгрузки со страницы
-    price.text = prices  # цена за 1 шт
-    amount.text = amounts  # количество
-    discountSum.text = '0'  # скидка
-    sum.text = str(float(amounts) * float(prices))  # сумма (цена * количество)
+    for i in range(prodlen):
+        item = ET.SubElement(items, 'item')
+        productId = ET.SubElement(item, 'productId')
+        storeId = ET.SubElement(item, 'storeId')
+        price = ET.SubElement(item, 'price')
+        amount = ET.SubElement(item, 'amount')
+        discountSum = ET.SubElement(item, 'discountSum')
+        sum = ET.SubElement(item, 'sum')
+        dateIncoming.text = date
+        useDefaultDocumentTime.text = 'true'
+        revenueAccountCode.text = '4.01'
+        counteragentId.text = sup  # Считать название покупателя со страницы
+        productId.text = prod[i]  # Считать название продукта со страницы
+        storeId.text = stock  # Считать название склада отгрузки со страницы
+        price.text = prices[prod[i]]  # цена за 1 шт
+        amount.text = amounts[prod[i]]  # количество
+        discountSum.text = '0'  # скидка
+        sum.text = str(float(prices[prod[i]]) * float(amounts[prod[i]]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
     # xml_doc = open("RN.xml", "w")
     # xml_doc.write(str(new_doc))
