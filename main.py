@@ -3,14 +3,13 @@ from flask import Flask, render_template, request, redirect
 from werkzeug import Response
 from functions import auth, get_stocks, get_products, get_suppliers, date_now, logout, category_price
 import requests
-from variables import protocol, port, server, bd
 
-# Сначала нужно считать данные из БД(скорее всего встроенной в питон SQL)
-# Сделать отдельную кнопку "Выгрузить данные из айко", в нее зашить запрос из айко, после хранить их БД
-# Данные - номенклатура, склады и список контрагентов из айко
-# Автоматический склад - "Заявка", выбор все равно должен быть
+# Сначала нужно считать данные из БД(скорее всего встроенной в питон SQLite)?
+# Сделать отдельную кнопку "Выгрузить данные из айко", в нее зашить запрос из айко, после хранить их БД?
+# Данные - номенклатура, ценовые категории, склады и список контрагентов из айко
+# Автоматический склад - "Заявка", выбор все равно должен быть?
 # Рядом с позициями вводится количество
-# Галочка о проводке
+# Галочка о проводке?
 # Количество строк зависит от вводимых данных(заполнил строку, добавилась еще)
 
 # Определите приложение.
@@ -35,12 +34,11 @@ def main_page() -> str:
         return redirect("/main_page", code=301)
     else:
         return render_template('error_page.html',
-                               the_title='Нужно еще пробовать')
+                               the_title='Неверный логин или пароль, вернитесь на страницу авторизации')
 
 
 @app.route("/main_page", methods=['post', 'get'])
 def main_page_zajavka() -> 'html':
-    # print(token.text)
     stocks = get_stocks(token)
     stocks_name = list(stocks.keys())
     products = get_products(token)
@@ -49,6 +47,7 @@ def main_page_zajavka() -> 'html':
     suppliers_name = list(suppliers.keys())
     category = category_price(token)
     category_name = list(category.keys())
+    print(token.text)
     # logout(token)
     # consign_date = request.form['datetime']
     # consign_stock = request.form['stock']

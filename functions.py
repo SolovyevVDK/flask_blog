@@ -8,7 +8,6 @@ import os
 import csv
 import xml.etree.ElementTree as ET
 
-
 from variables import protocol, server, port, bd
 from datetime import datetime
 
@@ -140,4 +139,32 @@ def category_price(token):
     category_name = [category_name_1, category_name_2]
     categories_full = dict(zip(category_name, category_id))
     return categories_full
+
+
+# Получение прайс-листа поставщика /api/suppliers/37/pricelist?key=
+# Выводит { название номенклатуры у нас : название номенклатуры у поставщика }
+def pricelist_supplier(token, supplier):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'xml')
+    suppliers_list = []
+    for name in soup.find_all('name'):
+        suppliers_list.append(name.string)
+    suppliers_code = []
+    for code in soup.find_all('code'):
+        suppliers_code.append(code.text)
+    suppliers_full = dict(zip(suppliers_list, suppliers_code))
+    code = suppliers_full[supplier]
+    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
+                 '/pricelist?key=' + token.text + '&code=' + code)
+    res = requests.get(price_url)
+    soup_2 = BeautifulSoup(res.content, 'xml')
+    our_product_name = []
+    for name in soup_2.find_all('nativeProductName'):
+        our_product_name.append(name.string)
+    them_product = []
+    for name in soup_2.find_all('supplierProductName'):
+        them_product.append(name.string)
+    pricelist = dict(zip(our_product_name, them_product))
+    return pricelist
 
