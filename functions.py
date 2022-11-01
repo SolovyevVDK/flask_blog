@@ -110,13 +110,17 @@ def data(sup, prod, stock, date, prices, amounts, prodlen):
 def post(token, doc):
     post_url = (
             protocol + '://' + server + ':' + port + bd + '/api/documents/import/outgoingInvoice?&key=' + token.text)
-    headers = {'Content-Type': 'application/xml'}  # set what your server accepts
+    headers = {'Content-Type': 'application/xml'}
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
 
 
 def bs4_scrapper():
-    pass
+    url = 'http://127.0.0.1:5000/main_page'
+    res = requests.get(url)
+    soup = BeautifulSoup(res.content, 'xml')
+    date_time = soup.find(class_='prod')
+    return date_time
 
 
 # Получение ценовых категорий
@@ -143,7 +147,7 @@ def category_price(token):
 
 # Получение прайс-листа поставщика /api/suppliers/37/pricelist?key=
 # Выводит { название номенклатуры у нас : название номенклатуры у поставщика }
-def pricelist_supplier(token, supplier):
+def pricelist_supplier_name(token, supplier):
     url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
@@ -168,3 +172,54 @@ def pricelist_supplier(token, supplier):
     pricelist = dict(zip(our_product_name, them_product))
     return pricelist
 
+
+def pricelist_supplier_id(token, supplier):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'xml')
+    suppliers_list = []
+    for name in soup.find_all('name'):
+        suppliers_list.append(name.string)
+    suppliers_code = []
+    for code in soup.find_all('code'):
+        suppliers_code.append(code.text)
+    suppliers_full = dict(zip(suppliers_list, suppliers_code))
+    code = suppliers_full[supplier]
+    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
+                 '/pricelist?key=' + token.text + '&code=' + code)
+    res = requests.get(price_url)
+    soup_2 = BeautifulSoup(res.content, 'xml')
+    our_product_name = []
+    for name in soup_2.find_all('nativeProductName'):
+        our_product_name.append(name.string)
+    them_product = []
+    for name in soup_2.find_all('supplierProduct'):
+        them_product.append(name.string)
+    pricelist = dict(zip(our_product_name, them_product))
+    return pricelist
+
+
+def pricelist_supplier_price(token, supplier):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'xml')
+    suppliers_list = []
+    for name in soup.find_all('name'):
+        suppliers_list.append(name.string)
+    suppliers_code = []
+    for code in soup.find_all('code'):
+        suppliers_code.append(code.text)
+    suppliers_full = dict(zip(suppliers_list, suppliers_code))
+    code = suppliers_full[supplier]
+    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
+                 '/pricelist?key=' + token.text + '&code=' + code)
+    res = requests.get(price_url)
+    soup_2 = BeautifulSoup(res.content, 'xml')
+    our_product_name = []
+    for name in soup_2.find_all('nativeProductName'):
+        our_product_name.append(name.string)
+    them_product = []
+    for name in soup_2.find_all('costPrice'):
+        them_product.append(name.string[0:-7:])
+    pricelist = dict(zip(our_product_name, them_product))
+    return pricelist

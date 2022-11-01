@@ -1,7 +1,7 @@
 from pprint import pprint
 
 from functions import get_stocks, get_products, get_suppliers, logout, auth, data, post, category_price,\
-    pricelist_supplier
+    pricelist_supplier_name, pricelist_supplier_id, pricelist_supplier_price
 from datetime import datetime
 
 
@@ -57,11 +57,15 @@ suppliers_name = list(suppliers.keys())                            #
 # print(data)
 # go_rn = post(token=token, doc=data)                                #
 
-print(suppliers_name)
+# print(suppliers_name)
 # a = 'api_test'
-a = input('Введите поставщика: ')
-price = pricelist_supplier(token=token, supplier=a)
-print(price)
+# # a = input('Введите поставщика: ')
+# price_name = pricelist_supplier_name(token=token, supplier=a)
+# price_id = pricelist_supplier_id(token=token, supplier=a)
+# price_price = pricelist_supplier_price(token=token, supplier=a)
+# print(price_name)
+# print(price_id)
+# print(price_price)
 logout(token)                                                      #
 
 # Сделать кнопку Сформировать расходную накладную и отдельно Отправить накладную

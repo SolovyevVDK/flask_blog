@@ -1,7 +1,7 @@
 # Импорт библиотек.
 from flask import Flask, render_template, request, redirect
 from werkzeug import Response
-from functions import auth, get_stocks, get_products, get_suppliers, date_now, logout, category_price
+from functions import auth, get_stocks, get_products, get_suppliers, date_now, logout, category_price, bs4_scrapper
 import requests
 
 # Сначала нужно считать данные из БД(скорее всего встроенной в питон SQLite)?
@@ -29,7 +29,9 @@ def main_page() -> str:
     password = request.form['password']
     global token
     token = auth(login=str(login), password=str(password))
-    # print(token.text)
+    with open("token.log", "w") as file:
+        file.write(token.text)
+    print(token.text)
     if str(auth(login=login, password=password)) == '<Response [200]>':
         return redirect("/main_page", code=301)
     else:
@@ -47,27 +49,28 @@ def main_page_zajavka() -> 'html':
     suppliers_name = list(suppliers.keys())
     category = category_price(token)
     category_name = list(category.keys())
-    print(token.text)
     # logout(token)
     # consign_date = request.form['datetime']
     # consign_stock = request.form['stock']
     # consign_supplier = request.form['suppliers']
-    return render_template("main_page_2.html",
+    return render_template("main_0.html",
                            the_title='Бланк заявки',
                            stocks_list=stocks_name,
                            other_inf='Переменная для будущего',
                            prod_list=products_name,
                            suppliers_list=suppliers_name,
                            category_list=category_name,
-                           datetime_now=date_now)
+                           datetime_now=date_now,
+                           token=token.text)
 
 
-@app.route("/logout", methods=['post'])
-def send():
-    logout(token)
-    return redirect("/", code=301)
+@app.route('/new_main', methods=['post', 'get'])
+def new_page() -> str:
+    prod_0 = bs4_scrapper()
+    print(prod_0)
+    return
 
 
 # Запуск
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
