@@ -15,6 +15,14 @@ dateto = datetime_string[0: -16]
 datefrom = (str((datetime.now() - timedelta(days=days_per_order))))[0:-16]
 
 
+def bs4_scrap(url):
+    req = requests.get(url)
+    soup = BeautifulSoup(req.content, features="lxml")
+    cat_name = soup.find('ul', class_='cat_name')
+    print(cat_name)
+    return
+
+
 # Получение токена
 def auth(login, password):
     sha1pass = hashlib.sha1(password.encode('utf-8')).hexdigest()
@@ -204,36 +212,30 @@ def category_pricelist():
     orders = read_orders()
     category_name = list(category.keys())
 
-    if not os.path.exists('log/pricelist/Базовый прайслист.json'):
-        open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8')
-    else:
-        os.remove('log/pricelist/Базовый прайслист.json')
+    di = {}
+    for n in category_name:
+        d = {}
+        for i in range(len(orders)):
+            for j in range(len(orders[i]['items'])):
+                name = products_id[orders[i]['items'][j]['productId']]
+                base_price = orders[i]['items'][j]['price']
+                price_for_category = orders[i]['items'][j]['pricesForCategories']
+                di.update({name: base_price})
+                for m in range(len(price_for_category)):
+                    if price_for_category[m]['categoryId'] == category[n]:
+                        d.update({name: price_for_category[m]['price']})
+        with open(f'log/pricelist/{n}.json', 'w', encoding='utf-8') as fille:
+            json.dump(d, fille, indent=4, ensure_ascii=False)
 
-    for cat in category_name:
-        if not os.path.exists(f'log/pricelist/{cat}.json'):
-            open(f'log/pricelist/{cat}.json', 'a', encoding='utf-8')
-        else:
-            os.remove(f'log/pricelist/{cat}.json')
-
-    baza_name = []
-    baza_price = []
-    my = []
-
-    for i in range(len(orders)):
-        for j in range(len(orders[i]['items'])):
-            baza_name.append(products_id[orders[i]['items'][j]['productId']])
-            baza_price.append(orders[i]['items'][j]['price'])
-            for m in range(len(orders[i]['items'][j]['pricesForCategories'])):
-                for n in category_name:
-                    if orders[i]['items'][j]['pricesForCategories'][m]['categoryId'] == category[n]:
-                        my_dict = {products_id[orders[i]['items'][j]['productId']]:
-                                   orders[i]['items'][j]['pricesForCategories'][m]['price']}
-                        with open(f'log/pricelist/{n}.json', 'a', encoding='utf-8') as fille:
-                            json.dump(my_dict, fille, indent=4, ensure_ascii=False)
-    di = dict(zip(baza_name, baza_price))
-    with open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8') as file:
+    with open('log/pricelist/Базовый прайслист.json', 'w', encoding='utf-8') as file:
         json.dump(di, file, indent=4, ensure_ascii=False)
     return
+
+
+def read_category_price(category_name):
+    with open(f'log/pricelist/{category_name}.json', encoding='utf-8') as file:
+        pricelist = json.load(file)
+    return pricelist
 
 
 # Формирование накладной
@@ -275,3 +277,5 @@ def post(token, doc):
     headers = {'Content-Type': 'application/xml'}
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
+
+

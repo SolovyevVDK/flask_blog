@@ -4,9 +4,9 @@
 
 <h4>{{ the_title }}</h4>
 
-      {% def  %}
 
-<form method='POST' action="/settings_complete">
+
+<form method="post" action="/settings">
     <div>
         <table>
             <tr>
@@ -25,11 +25,13 @@
                     <ul>
                         {% for supplier in suppliers %}
                         <li>
-                            <input id="category" list="{{category}}">
-                            <datalist name="cat_name" id="{{category}}">
-                                {% for option in category %}
-                                <option value="{{option}}">{{option}}</option>
-                                {% endfor %}
+                            <input type="search" id="categories" list="{{categories}}">
+                            <datalist id="{{categories}}">
+                                <select>
+                                    {% for option in categories %}
+                                    <option name="cat_name" value="{{option}}"></option>
+                                    {% endfor %}
+                                </select>
                             </datalist>
                         </li>
                         {% endfor %}
@@ -38,8 +40,18 @@
             </tr>
         </table>
     </div>
-    <p><span> <input type="submit" value=" Сохранить данные " onClick="dataSelect(this.form)"></span></p>
+    <p><span> <input type="submit" value=" Сохранить данные "></span></p>
 
 </form>
+
+
+    <script>
+        const values = document.querySelector('#categories');
+        let valueOfOption = '';
+
+        values.addEventListener('change', (e) => {
+        valueOfOption = e.target.value;
+        })
+    </script>
 
 {% endblock %}

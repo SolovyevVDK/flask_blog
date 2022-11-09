@@ -1,38 +1,5 @@
 [
     {
-        "id": "8f73a7aa-54c1-4c49-a4d1-b7c14f688cba",
-        "dateIncoming": "2022-11-01",
-        "documentNumber": "0003",
-        "status": "PROCESSED",
-        "shortName": "",
-        "deletePreviousMenu": false,
-        "dateTo": "2500-01-01",
-        "items": [
-            {
-                "num": 0,
-                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
-                "productId": "a0f94df1-ca02-4c0a-9b29-7df02101020b",
-                "productSizeId": null,
-                "including": true,
-                "price": 100,
-                "dishOfDay": false,
-                "flyerProgram": false,
-                "pricesForCategories": [
-                    {
-                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
-                        "price": 85
-                    }
-                ],
-                "includeForCategories": [
-                    {
-                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
-                        "include": true
-                    }
-                ]
-            }
-        ]
-    },
-    {
         "id": "c9229484-1bea-4882-8010-6ce840640a17",
         "dateIncoming": "2022-11-05",
         "documentNumber": "0004",
@@ -268,6 +235,287 @@
                     {
                         "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
                         "price": 149.48
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "5d2685ac-0d14-4bbc-b940-2604593504db",
+        "dateIncoming": "2022-11-11",
+        "documentNumber": "0005",
+        "status": "PROCESSED",
+        "shortName": "imwinner",
+        "deletePreviousMenu": false,
+        "dateTo": "2500-01-01",
+        "items": [
+            {
+                "num": 0,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "34c23beb-f412-443a-9eb1-6942e9be148e",
+                "productSizeId": null,
+                "including": true,
+                "price": 150,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 127.5
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 180
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 1,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "427c6e87-b108-4a44-b220-0f47a99abc3b",
+                "productSizeId": null,
+                "including": true,
+                "price": 80,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 68
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 96
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 2,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "133941e3-5c7b-4c71-b717-29409bfa3bac",
+                "productSizeId": null,
+                "including": true,
+                "price": 153.6,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 130.56
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 184.32
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 3,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "2b12c04c-a342-429b-8be5-b32bb4a0d6e3",
+                "productSizeId": null,
+                "including": true,
+                "price": 1251.24,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 1063.55
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 1501.49
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 4,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "fe97fc74-01d4-48b1-ab3c-093929d7c5cf",
+                "productSizeId": null,
+                "including": true,
+                "price": 163.2,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 138.72
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 195.84
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 5,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "63edf63e-a6d0-042c-0174-192d74ba77d8",
+                "productSizeId": null,
+                "including": true,
+                "price": 78.8,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 66.98
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 94.56
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 6,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "7dcf3e92-ecd0-4535-844b-197e209b67d6",
+                "productSizeId": null,
+                "including": true,
+                "price": 142,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 120.7
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 170.4
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 7,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "eaba268a-c8c3-42a1-aa41-235685b75599",
+                "productSizeId": null,
+                "including": true,
+                "price": 426,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 362.1
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 511.2
+                    }
+                ],
+                "includeForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "include": true
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "include": true
+                    }
+                ]
+            },
+            {
+                "num": 8,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "ba94386a-f8c6-4f31-9c1e-de1c8012d0e6",
+                "productSizeId": null,
+                "including": true,
+                "price": 561,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [
+                    {
+                        "categoryId": "d458e229-c72e-4205-ac22-7b572df6226b",
+                        "price": 476.85
+                    },
+                    {
+                        "categoryId": "b136b8a0-7787-4d16-a72a-84c1be6c8633",
+                        "price": 673.2
                     }
                 ],
                 "includeForCategories": [

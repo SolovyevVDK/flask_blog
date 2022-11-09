@@ -30,24 +30,27 @@ def auth_page() -> 'html':
 @app.route('/settings', methods=['post', 'get'])
 def settings() -> 'html':
     suppliers = list(read_suppliers().keys())
-    category = list(read_category().keys())
+    categories = list(read_category().keys())
+    # global cat_name
+    # cat_name = request.form['cat_name']
     return render_template('settings.html',
                            the_title='Настройки',
                            suppliers=suppliers,
-                           category=category)
+                           categories=categories)
 
 
-@app.route('/settings_complete', methods=['post', 'get'])
+@app.route('/settings_1', methods=['post'])
 def set_complete() -> 'html':
     suppliers = list(read_suppliers().keys())
     cat_name = request.form['cat_name']
+    print(cat_name)
     d = dict(zip(suppliers, cat_name))
     with open('supcat.json', 'w', encoding='utf-8') as file:
         json.dump(d, file, indent=4, ensure_ascii=False)
     return render_template('settings.html',
                            the_title='Настройки',
                            suppliers=suppliers,
-                           category=cat_name)
+                           cat_name=suppliers)
 
 
 @app.route("/", methods=['post', 'get'])
@@ -65,4 +68,4 @@ def main_page() -> 'html':
 
 # Запуск
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
