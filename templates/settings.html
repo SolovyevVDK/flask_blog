@@ -4,6 +4,8 @@
 
 <h4>{{ the_title }}</h4>
 
+      {% def  %}
+
 <form method='POST' action="/settings_complete">
     <div>
         <table>
@@ -24,9 +26,9 @@
                         {% for supplier in suppliers %}
                         <li>
                             <input id="category" list="{{category}}">
-                            <datalist id="{{category}}">
+                            <datalist name="cat_name" id="{{category}}">
                                 {% for option in category %}
-                                <option name="cat_name" value="{{option}}">{{option}}</option>
+                                <option value="{{option}}">{{option}}</option>
                                 {% endfor %}
                             </datalist>
                         </li>
@@ -36,7 +38,7 @@
             </tr>
         </table>
     </div>
-    <p><span name="button_go"> <input type="submit" value=" Сохранить данные "></span></p>
+    <p><span> <input type="submit" value=" Сохранить данные " onClick="dataSelect(this.form)"></span></p>
 
 </form>
 

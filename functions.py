@@ -209,17 +209,20 @@ def category_pricelist():
     else:
         os.remove('log/pricelist/Базовый прайслист.json')
 
-    for l in range(len(category_name)):
-        if not os.path.exists(f'log/pricelist/{category_name[l]}.json'):
-            open(f'log/pricelist/{category_name[l]}.json', 'a', encoding='utf-8')
+    for cat in category_name:
+        if not os.path.exists(f'log/pricelist/{cat}.json'):
+            open(f'log/pricelist/{cat}.json', 'a', encoding='utf-8')
         else:
-            os.remove(f'log/pricelist/{category_name[l]}.json')
+            os.remove(f'log/pricelist/{cat}.json')
+
+    baza_name = []
+    baza_price = []
+    my = []
 
     for i in range(len(orders)):
         for j in range(len(orders[i]['items'])):
-            di = {products_id[orders[i]['items'][j]['productId']]: orders[i]['items'][j]['price']}
-            with open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8') as file:
-                json.dump(di, file, indent=4, ensure_ascii=False)
+            baza_name.append(products_id[orders[i]['items'][j]['productId']])
+            baza_price.append(orders[i]['items'][j]['price'])
             for m in range(len(orders[i]['items'][j]['pricesForCategories'])):
                 for n in category_name:
                     if orders[i]['items'][j]['pricesForCategories'][m]['categoryId'] == category[n]:
@@ -227,6 +230,9 @@ def category_pricelist():
                                    orders[i]['items'][j]['pricesForCategories'][m]['price']}
                         with open(f'log/pricelist/{n}.json', 'a', encoding='utf-8') as fille:
                             json.dump(my_dict, fille, indent=4, ensure_ascii=False)
+    di = dict(zip(baza_name, baza_price))
+    with open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8') as file:
+        json.dump(di, file, indent=4, ensure_ascii=False)
     return
 
 
