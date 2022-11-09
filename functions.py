@@ -1,18 +1,18 @@
-import datetime
-import re
+import json
+import os
+
 import requests
 import hashlib
 from bs4 import BeautifulSoup
-import xml
-import os
-import csv
 import xml.etree.ElementTree as ET
 
-from variables import protocol, server, port, bd
-from datetime import datetime
+from variables import protocol, server, port, bd, days_per_order
+from datetime import datetime, timedelta
 
 datetime_string = str(datetime.now())
 date_now = datetime_string[0:-7:]
+dateto = datetime_string[0: -16]
+datefrom = (str((datetime.now() - timedelta(days=days_per_order))))[0:-16]
 
 
 # Получение токена
@@ -29,11 +29,24 @@ def logout(token):
     requests.get(out_url)
 
 
-# Получаем список складов
-def get_stocks(token):
+# Запись ВСЕГО
+def all_write(token):
+    write_category(token)
+    write_stocks(token)
+    write_suppliers(token)
+    write_products_id(token)
+    write_products_name(token)
+    write_orders(token)
+    category_pricelist()
+
+
+# Записать В ЛОГ склады
+def write_stocks(token):
     gets_url = (protocol + '://' + server + ':' + port + bd + '/api/corporation/stores?key=' + token.text)
     store = requests.get(gets_url)
     soup = BeautifulSoup(store.content, 'xml')
+    with open(f'log/xml/stocks_{dateto}.xml', 'w', encoding='utf-8') as file:
+        file.write(str(soup))
     stocks_list = []
     for name in soup.find_all('name'):
         stocks_list.append(name.string)
@@ -41,14 +54,25 @@ def get_stocks(token):
     for id in soup.find_all('id'):
         stocks_id.append(id.text)
     stocks_full = dict(zip(stocks_list, stocks_id))
-    return stocks_full
+    with open('log/txt/stocks.txt', 'w', encoding='utf-8') as file:
+        json.dump(stocks_full, file, indent=4, ensure_ascii=False)
+    return
 
 
-# Получаем список продуктов
-def get_products(token):
+# Прочитать ИЗ ЛОГА и записать в переменную склады
+def read_stocks():
+    with open('log/txt/stocks.txt', encoding='utf-8') as file:
+        stocks = json.load(file)
+    return stocks
+
+
+# Записываем список продуктов В ЛОГ {name:id}
+def write_products_name(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
+    with open(f'log/xml/products_name_{dateto}.xml', 'w', encoding='utf-8') as file:
+        file.write(str(soup))
     products_list = []
     for name in soup.find_all('name'):
         products_list.append(name.string)
@@ -56,14 +80,51 @@ def get_products(token):
     for id in soup.find_all('id'):
         products_id.append(id.text)
     products_full = dict(zip(products_list, products_id))
+    with open('log/txt/products_name.txt', 'w', encoding='utf-8') as file:
+        json.dump(products_full, file, indent=4, ensure_ascii=False)
     return products_full
 
 
-# Получаем словарь контрагентов (название : id)
-def get_suppliers(token):
+# Прочитать ИЗ ЛОГА продукты {name:id}
+def read_products_name():
+    with open('log/txt/products_name.txt', encoding='utf-8') as file:
+        products_name = json.load(file)
+    return products_name
+
+
+# Записать список продуктов В ЛОГ {id:name}
+def write_products_id(token):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'xml')
+    with open(f'log/xml/products_id_{dateto}.xml', 'w', encoding='utf-8') as file:
+        file.write(str(soup))
+    products_list = []
+    for name in soup.find_all('name'):
+        products_list.append(name.string)
+    products_id = []
+    for id in soup.find_all('id'):
+        products_id.append(id.text)
+    products_full = dict(zip(products_id, products_list))
+    with open('log/txt/products_id.txt', 'w', encoding='utf-8') as file:
+        json.dump(products_full, file, indent=4, ensure_ascii=False)
+    return products_full
+
+
+# Прочитать ИЗ ЛОГА {id:name} продукты
+def read_products_id():
+    with open('log/txt/products_id.txt', encoding='utf-8') as file:
+        products_id = json.load(file)
+    return products_id
+
+
+# Запись В ЛОГ словарь контрагентов (название : id)
+def write_suppliers(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
+    with open(f'log/xml/suppliers_{dateto}.xml', 'w', encoding='utf-8') as file:
+        file.write(str(soup))
     suppliers_list = []
     for name in soup.find_all('name'):
         suppliers_list.append(name.string)
@@ -71,7 +132,102 @@ def get_suppliers(token):
     for id in soup.find_all('id'):
         suppliers_id.append(id.text)
     suppliers_full = dict(zip(suppliers_list, suppliers_id))
+    with open('log/txt/suppliers.txt', 'w', encoding='utf-8') as file:
+        json.dump(suppliers_full, file, indent=4, ensure_ascii=False)
     return suppliers_full
+
+
+# Прочитать ИЗ ЛОГА словарь поставщиков
+def read_suppliers():
+    with open('log/txt/suppliers.txt', encoding='utf-8') as file:
+        suppliers = json.load(file)
+    return suppliers
+
+
+# Записать В ЛОГ приказы(весь запрос)
+def write_orders(token):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/v2/documents/menuChange?dateFrom='
+           + datefrom + '&dateTo=' + dateto + '&key=' + token.text)
+    res = requests.get(url)
+    orders = res.json()['response']
+    with open('log/txt/orders.txt', 'w', encoding='utf-8') as file:
+        json.dump(orders, file, indent=4, ensure_ascii=False)
+    names = []
+    items = []
+    for i in range(len(orders)):
+        names.append(orders[i]['shortName'])
+        items.append(orders[i]['items'])
+
+    orders_full = dict(zip(names, items))
+
+    with open('log/txt/orders_name_items.txt', 'w', encoding='utf-8') as file:
+        json.dump(orders_full, file, indent=4, ensure_ascii=False)
+    return orders_full
+
+
+# Чтение приказов
+def read_orders():
+    with open('log/txt/orders.txt', encoding='utf-8') as file:
+        orders = json.load(file)
+    return orders
+
+
+# Запись В ЛОГ ценовых категорий
+def write_category(token):
+    url = (protocol + '://' + server + ':' + port + bd + '/api/v2/entities/priceCategories/?includeDeleted=true?&key='
+           + token.text)
+    response = requests.get(url)
+    category = response.json()['response']
+    names = []
+    ids = []
+    for i in range(len(category)):
+        name = category[i]['name']
+        id = category[i]['id']
+        names.append(name)
+        ids.append(id)
+        category_list = dict(zip(names, ids))
+        with open('log/txt/category.txt', 'w', encoding='utf-8') as file:
+            json.dump(category_list, file, indent=4, ensure_ascii=False)
+    return category_list
+
+
+# Чтение ИЗ ЛОГА ценовых категорий
+def read_category():
+    with open('log/txt/category.txt', encoding='utf-8') as file:
+        category = json.load(file)
+    return category
+
+
+def category_pricelist():
+    products_id = read_products_id()
+    category = read_category()
+    orders = read_orders()
+    category_name = list(category.keys())
+
+    if not os.path.exists('log/pricelist/Базовый прайслист.json'):
+        open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8')
+    else:
+        os.remove('log/pricelist/Базовый прайслист.json')
+
+    for l in range(len(category_name)):
+        if not os.path.exists(f'log/pricelist/{category_name[l]}.json'):
+            open(f'log/pricelist/{category_name[l]}.json', 'a', encoding='utf-8')
+        else:
+            os.remove(f'log/pricelist/{category_name[l]}.json')
+
+    for i in range(len(orders)):
+        for j in range(len(orders[i]['items'])):
+            di = {products_id[orders[i]['items'][j]['productId']]: orders[i]['items'][j]['price']}
+            with open('log/pricelist/Базовый прайслист.json', 'a', encoding='utf-8') as file:
+                json.dump(di, file, indent=4, ensure_ascii=False)
+            for m in range(len(orders[i]['items'][j]['pricesForCategories'])):
+                for n in category_name:
+                    if orders[i]['items'][j]['pricesForCategories'][m]['categoryId'] == category[n]:
+                        my_dict = {products_id[orders[i]['items'][j]['productId']]:
+                                   orders[i]['items'][j]['pricesForCategories'][m]['price']}
+                        with open(f'log/pricelist/{n}.json', 'a', encoding='utf-8') as fille:
+                            json.dump(my_dict, fille, indent=4, ensure_ascii=False)
+    return
 
 
 # Формирование накладной
@@ -101,8 +257,8 @@ def data(sup, prod, stock, date, prices, amounts, prodlen):
         discountSum.text = '0'  # скидка
         sum.text = str(float(prices[prod[i]]) * float(amounts[prod[i]]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
-    # xml_doc = open("RN.xml", "w")
-    # xml_doc.write(str(new_doc))
+    with open(f'log/consignment/{date_now}_consignment.txt', 'w', encoding='utf-8') as file:
+        file.write()
     return new_doc
 
 
@@ -113,113 +269,3 @@ def post(token, doc):
     headers = {'Content-Type': 'application/xml'}
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
-
-
-def bs4_scrapper():
-    url = 'http://127.0.0.1:5000/main_page'
-    res = requests.get(url)
-    soup = BeautifulSoup(res.content, 'xml')
-    date_time = soup.find(class_='prod')
-    return date_time
-
-
-# Получение ценовых категорий
-def category_price(token):
-    url = (
-            protocol + '://' + server + ':' + port + bd + '/api/v2/entities/priceCategories/?includeDeleted=true?&key='
-            + token.text
-    )
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'lxml')
-    c = soup.find('p').__dict__
-    cc = c['contents']
-    ccc = cc[0]
-    aa = ccc.string
-    category_id_1 = aa[51:87:]
-    category_id_2 = aa[223:259:]
-    category_id = [category_id_1, category_id_2]
-    category_name_1 = aa[97:109:]
-    category_name_2 = aa[269:279:]
-    category_name = [category_name_1, category_name_2]
-    categories_full = dict(zip(category_name, category_id))
-    return categories_full
-
-
-# Получение прайс-листа поставщика /api/suppliers/37/pricelist?key=
-# Выводит { название номенклатуры у нас : название номенклатуры у поставщика }
-def pricelist_supplier_name(token, supplier):
-    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'xml')
-    suppliers_list = []
-    for name in soup.find_all('name'):
-        suppliers_list.append(name.string)
-    suppliers_code = []
-    for code in soup.find_all('code'):
-        suppliers_code.append(code.text)
-    suppliers_full = dict(zip(suppliers_list, suppliers_code))
-    code = suppliers_full[supplier]
-    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
-                 '/pricelist?key=' + token.text + '&code=' + code)
-    res = requests.get(price_url)
-    soup_2 = BeautifulSoup(res.content, 'xml')
-    our_product_name = []
-    for name in soup_2.find_all('nativeProductName'):
-        our_product_name.append(name.string)
-    them_product = []
-    for name in soup_2.find_all('supplierProductName'):
-        them_product.append(name.string)
-    pricelist = dict(zip(our_product_name, them_product))
-    return pricelist
-
-
-def pricelist_supplier_id(token, supplier):
-    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'xml')
-    suppliers_list = []
-    for name in soup.find_all('name'):
-        suppliers_list.append(name.string)
-    suppliers_code = []
-    for code in soup.find_all('code'):
-        suppliers_code.append(code.text)
-    suppliers_full = dict(zip(suppliers_list, suppliers_code))
-    code = suppliers_full[supplier]
-    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
-                 '/pricelist?key=' + token.text + '&code=' + code)
-    res = requests.get(price_url)
-    soup_2 = BeautifulSoup(res.content, 'xml')
-    our_product_name = []
-    for name in soup_2.find_all('nativeProductName'):
-        our_product_name.append(name.string)
-    them_product = []
-    for name in soup_2.find_all('supplierProduct'):
-        them_product.append(name.string)
-    pricelist = dict(zip(our_product_name, them_product))
-    return pricelist
-
-
-def pricelist_supplier_price(token, supplier):
-    url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'xml')
-    suppliers_list = []
-    for name in soup.find_all('name'):
-        suppliers_list.append(name.string)
-    suppliers_code = []
-    for code in soup.find_all('code'):
-        suppliers_code.append(code.text)
-    suppliers_full = dict(zip(suppliers_list, suppliers_code))
-    code = suppliers_full[supplier]
-    price_url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers/' + code +
-                 '/pricelist?key=' + token.text + '&code=' + code)
-    res = requests.get(price_url)
-    soup_2 = BeautifulSoup(res.content, 'xml')
-    our_product_name = []
-    for name in soup_2.find_all('nativeProductName'):
-        our_product_name.append(name.string)
-    them_product = []
-    for name in soup_2.find_all('costPrice'):
-        them_product.append(name.string[0:-7:])
-    pricelist = dict(zip(our_product_name, them_product))
-    return pricelist

@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <h1>
+      <span>
+        <a href="/settings"><input name="save" type="button" value="Настройки контрагентов" /></a>
+        <a href="/all_write"><input name="reload" type="button" value="Синхронизировать базу данных с iiko"></a>
+        <a href="/"><input name="zaj" type="button" value="Перейти на страницу заявки"></a>
+      </span>
+    </h1>
     <title>{{ the_title }}</title>
     <link rel="stylesheet" href="static/hf.css" />
   </head>
   <body>
+  <style>
+   li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+   ul {
+    padding-left: 0; /* Сдвигаем список влево */
+   }
+  </style>
     {% block body %}
 
     {% endblock %}
