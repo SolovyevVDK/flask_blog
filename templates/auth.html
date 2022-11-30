@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div align="center">
+    <h4>{{ the_title }}</h4>
+    <span>
+        Для синхронизации с сервером iiko<br>
+        необходимо ввести логин и пароль<br>
+
+    </span>
+    <form method='POST' action="/synch">
+        <table>
+            <tr>
+                <td>Логин:</td>
+                <td><input name="login" type="text"/></td>
+            </tr>
+            <tr>
+                <td>Пароль:</td>
+                <td><input name="password" type="password" /></td>
+            </tr>
+        </table>
+        <p><input type="submit" value=" Выполнить синхронизацию " /></p>
+    </form>
+</div>
+
+
+{% endblock %}

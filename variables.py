@@ -4,4 +4,4 @@ port = '443'
 bd = '/resto'
 login = 'admin'
 password = 'restoRtest'
-days_per_order = 10
+days_per_order = 60

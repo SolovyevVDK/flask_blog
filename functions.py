@@ -9,18 +9,10 @@ import xml.etree.ElementTree as ET
 from variables import protocol, server, port, bd, days_per_order
 from datetime import datetime, timedelta
 
-datetime_string = str(datetime.now())
+datetime_string = str(datetime.isoformat(datetime.now()))
 date_now = datetime_string[0:-7:]
 dateto = datetime_string[0: -16]
 datefrom = (str((datetime.now() - timedelta(days=days_per_order))))[0:-16]
-
-
-def bs4_scrap(url):
-    req = requests.get(url)
-    soup = BeautifulSoup(req.content, features="lxml")
-    cat_name = soup.find('ul', class_='cat_name')
-    print(cat_name)
-    return
 
 
 # Получение токена
@@ -53,7 +45,7 @@ def write_stocks(token):
     gets_url = (protocol + '://' + server + ':' + port + bd + '/api/corporation/stores?key=' + token.text)
     store = requests.get(gets_url)
     soup = BeautifulSoup(store.content, 'xml')
-    with open(f'log/xml/stocks_{dateto}.xml', 'w', encoding='utf-8') as file:
+    with open(f'log/xml/stocks.xml', 'w', encoding='utf-8') as file:
         file.write(str(soup))
     stocks_list = []
     for name in soup.find_all('name'):
@@ -79,7 +71,7 @@ def write_products_name(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/products_name_{dateto}.xml', 'w', encoding='utf-8') as file:
+    with open(f'log/xml/products_name.xml', 'w', encoding='utf-8') as file:
         file.write(str(soup))
     products_list = []
     for name in soup.find_all('name'):
@@ -105,7 +97,7 @@ def write_products_id(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/products_id_{dateto}.xml', 'w', encoding='utf-8') as file:
+    with open(f'log/xml/products_id.xml', 'w', encoding='utf-8') as file:
         file.write(str(soup))
     products_list = []
     for name in soup.find_all('name'):
@@ -131,7 +123,7 @@ def write_suppliers(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/suppliers_{dateto}.xml', 'w', encoding='utf-8') as file:
+    with open(f'log/xml/suppliers.xml', 'w', encoding='utf-8') as file:
         file.write(str(soup))
     suppliers_list = []
     for name in soup.find_all('name'):
@@ -227,7 +219,7 @@ def category_pricelist():
         with open(f'log/pricelist/{n}.json', 'w', encoding='utf-8') as fille:
             json.dump(d, fille, indent=4, ensure_ascii=False)
 
-    with open('log/pricelist/Базовый прайслист.json', 'w', encoding='utf-8') as file:
+    with open('log/pricelist/Базовый прайс.json', 'w', encoding='utf-8') as file:
         json.dump(di, file, indent=4, ensure_ascii=False)
     return
 
@@ -239,14 +231,17 @@ def read_category_price(category_name):
 
 
 # Формирование накладной
-def data(sup, prod, stock, date, prices, amounts, prodlen):
+def data(date, sup, stock, prod, prices, amounts, prodlen):
+    products_name = read_products_name()
+    stock_name = read_stocks()
+    supplier_name = read_suppliers()
     document = ET.Element('document')
     dateIncoming = ET.SubElement(document, 'dateIncoming')
     useDefaultDocumentTime = ET.SubElement(document, 'useDefaultDocumentTime')
     revenueAccountCode = ET.SubElement(document, 'revenueAccountCode')
     counteragentId = ET.SubElement(document, 'counteragentId')
     items = ET.SubElement(document, 'items')
-    for i in range(prodlen):
+    for i in range(0, prodlen):
         item = ET.SubElement(items, 'item')
         productId = ET.SubElement(item, 'productId')
         storeId = ET.SubElement(item, 'storeId')
@@ -257,16 +252,14 @@ def data(sup, prod, stock, date, prices, amounts, prodlen):
         dateIncoming.text = date
         useDefaultDocumentTime.text = 'true'
         revenueAccountCode.text = '4.01'
-        counteragentId.text = sup  # Считать название покупателя со страницы
-        productId.text = prod[i]  # Считать название продукта со страницы
-        storeId.text = stock  # Считать название склада отгрузки со страницы
-        price.text = prices[prod[i]]  # цена за 1 шт
-        amount.text = amounts[prod[i]]  # количество
+        counteragentId.text = supplier_name[sup]  # Считать название покупателя со страницы
+        productId.text = products_name[prod[i]]  # Считать название продукта со страницы
+        storeId.text = stock_name[stock]  # Считать название склада отгрузки со страницы
+        price.text = str(prices[i])  # цена за 1 шт
+        amount.text = str(amounts[i])  # количество
         discountSum.text = '0'  # скидка
-        sum.text = str(float(prices[prod[i]]) * float(amounts[prod[i]]))  # сумма (цена * количество)
+        sum.text = str(float(prices[i]) * float(amounts[i]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
-    with open(f'log/consignment/{date_now}_consignment.txt', 'w', encoding='utf-8') as file:
-        file.write()
     return new_doc
 
 
@@ -277,5 +270,3 @@ def post(token, doc):
     headers = {'Content-Type': 'application/xml'}
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
-
-
