@@ -13,21 +13,21 @@
                 <td><span id="datetime">{{datetime_now}}</span></td>
             </tr>
             <tr>
-                <th>Отгружаем со склада: </th>
+                <th>Склада: </th>
                 <td><span id="chosen_stock">{{stock}}</span></td>
             </tr>
             <tr>
-                <th> Выберите получателя: </th>
+                <th>Получатель: </th>
                 <td><span id="chosen_supplier">{{supplier}}</span></td>
             </tr>
             <tr>
-                <th> Выберите ценовую категорию: </th>
+                <th>Категория: </th>
                 <td><span id="chosen_category">{{category}}</span></td>
             </tr>
         </table>
     </div>
     <div align="center">
-        <table border="1">
+        <table border="1" cellpadding="4" cellspacing="0">
             <tr>
                 <th> Наименование </th>
                 <th> Цена </th>
@@ -37,19 +37,23 @@
             {% for name in order %}
             {% if am[name]|float != 0 %}
             <tr>
-                <td>{{ name }}</td>
-                <td>{{ pricelist[name]|float }}</td>
-                <td>{{ am[name]|float }}</td>
+                <td name="product">{{ name }}</td>
+                <td name="price">{{ pricelist[name]|float }}</td>
+                <td name="amount">{{ am[name]|float }}</td>
                 <td>{{ ((pricelist[name]|float) * (am[name]|float)) | round(2) }}</td>
             </tr>
             {% endif %}
             {% endfor %}
+            <tr>
+                <td colspan="3"> Общая сумма: </td>
+                <td> {{ sum | round(2) }}</td>
+            </tr>
         </table>
     </div>
     <div align="center">
+        <br>
         Проверьте правильность заполненной заявки. <br>
-        Если нашли ошибку, необходимо заполнить заново<br>
-        <a href="/">Вернуться</a><br>
+        Если нашли ошибку, вернитесь на предыдущую страницу<br>
         Если все внесено правильно,<br>
         введите логин и пароль от iikoOffice и нажмите "Отправить"<br>
     </div>

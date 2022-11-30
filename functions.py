@@ -1,11 +1,9 @@
 import json
 import os
-
 import requests
 import hashlib
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
-
 from variables import protocol, server, port, bd, days_per_order
 from datetime import datetime, timedelta
 
@@ -13,6 +11,7 @@ datetime_string = str(datetime.isoformat(datetime.now()))
 date_now = datetime_string[0:-7:]
 dateto = datetime_string[0: -16]
 datefrom = (str((datetime.now() - timedelta(days=days_per_order))))[0:-16]
+timedata = date_now[11::].replace(':', '-')
 
 
 # Получение токена
@@ -40,13 +39,27 @@ def all_write(token):
     category_pricelist()
 
 
+def clean_base():
+    category = list(read_category().keys())
+    for i in category:
+        os.remove(f'log/pricelist/{i}.json')
+
+    os.remove('log/pricelist/Базовый прайс.json')
+    os.remove('log/txt/category.txt')
+    os.remove('log/txt/orders.txt')
+    os.remove('log/txt/orders_name_items.txt')
+    os.remove('log/txt/products_id.txt')
+    os.remove('log/txt/products_name.txt')
+    os.remove('log/txt/stocks.txt')
+    os.remove('log/txt/suppliers.txt')
+    return
+
+
 # Записать В ЛОГ склады
 def write_stocks(token):
     gets_url = (protocol + '://' + server + ':' + port + bd + '/api/corporation/stores?key=' + token.text)
     store = requests.get(gets_url)
     soup = BeautifulSoup(store.content, 'xml')
-    with open(f'log/xml/stocks.xml', 'w', encoding='utf-8') as file:
-        file.write(str(soup))
     stocks_list = []
     for name in soup.find_all('name'):
         stocks_list.append(name.string)
@@ -71,8 +84,6 @@ def write_products_name(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/products_name.xml', 'w', encoding='utf-8') as file:
-        file.write(str(soup))
     products_list = []
     for name in soup.find_all('name'):
         products_list.append(name.string)
@@ -97,8 +108,6 @@ def write_products_id(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/products?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/products_id.xml', 'w', encoding='utf-8') as file:
-        file.write(str(soup))
     products_list = []
     for name in soup.find_all('name'):
         products_list.append(name.string)
@@ -123,8 +132,6 @@ def write_suppliers(token):
     url = (protocol + '://' + server + ':' + port + bd + '/api/suppliers?key=' + token.text)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, 'xml')
-    with open(f'log/xml/suppliers.xml', 'w', encoding='utf-8') as file:
-        file.write(str(soup))
     suppliers_list = []
     for name in soup.find_all('name'):
         suppliers_list.append(name.string)
@@ -260,6 +267,8 @@ def data(date, sup, stock, prod, prices, amounts, prodlen):
         discountSum.text = '0'  # скидка
         sum.text = str(float(prices[i]) * float(amounts[i]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
+    with open(f'log/consignment/consignment_{dateto}_{timedata}.xml', 'w', encoding="utf-8") as file:
+        file.write(str(new_doc))
     return new_doc
 
 

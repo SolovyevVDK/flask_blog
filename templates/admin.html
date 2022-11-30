@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div align="center">
+    <h4>{{ the_title }}</h4>
+    <span>
+        Будьте внимательны при изменении<br>
+        эти настроек!<br>
+
+    </span>
+    <form method='POST' action="/admin_nice">
+        <table align="center">
+            <thead align="">
+                <tr align="center">
+                    <th align="center"> </th>
+                    <th align="center"> Протокол </th>
+                    <th align="center"> Сервер </th>
+                    <th align="center"> Порт </th>
+                    <th align="center"> БД </th>
+                    <th align="center"> Срок приказов </th>
+                </tr>
+            </thead>
+            <tbody align="center">
+                <tr>
+                    <th> Текущие значения </th>
+                    <td> {{protocol}} </td>
+                    <td> {{server}} </td>
+                    <td> {{port}} </td>
+                    <td> {{bd}} </td>
+                    <td> {{days_per_order}} </td>
+                </tr>
+                <tr>
+                    <th> Введите новые значения </th>
+                    <td> <input name="protocol" type="text"></td>
+                    <td> <input name="server" type="text"></td>
+                    <td> <input name="port" type="text"></td>
+                    <td> <input name="bd" type="text"></td>
+                    <td> <input name="days_per_order" type="text"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p><input type="submit" value=" Сохранить настройки " /></p>
+        <div align="center">
+            После выполнения данных<br>
+            настроек необходимо выполнить<br>
+            синхронизацию с базой<br>
+            <a href="/auth">Синхронизация</a><br>
+            <a href="/">Бланк заявки</a>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
