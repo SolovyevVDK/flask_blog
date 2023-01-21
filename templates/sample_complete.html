@@ -1,36 +1,36 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<form method="post" action="/main_finally">
+<form method="post" action="/save_sample">
     <div align="center">
         <img src="static/images/welcome-title.png" />
         <h3>{{the_title}}</h3>
     </div>
     <div align="center">
-        <table>
+        <table align="center">
             <tr>
-                <th align="right">Дата и время: </th>
-                <td align="left"><span id="datetime">{{date}} {{time}}</span></td>
+                <th align="right">Задайте имя шабона: </th>
+                <td align="left"><input type="text" name="sample_name"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value=" Сохранить шаблон "></td>
             </tr>
             <tr>
                 <th align="right">Склад: </th>
-                <td align="left"><span id="chosen_stock">{{stock}}</span></td>
+                <td align="left"><span id="chosen_stock" name="stock">{{stock}}</span></td>
             </tr>
             <tr>
                 <th align="right">Получатель: </th>
-                <td align="left"><span id="chosen_supplier">{{supplier}}</span></td>
+                <td align="left"><span id="chosen_supplier" name="supplier">{{supplier}}</span></td>
             </tr>
             <tr>
                 <th align="right">Категория: </th>
-                <td align="left"><span id="chosen_category">{{category}}</span></td>
+                <td align="left"><span id="chosen_category" name="category">{{category}}</span></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">При заполнении столбца "Количество" запятые не использовать</td>
             </tr>
         </table>
-    </div>
-    <div align="center">
-        <input type="submit" value=" Сформировать заявку ">
     </div>
     <div align="center">
         <div class="form-group" align="center">
@@ -47,7 +47,7 @@
             <tbody>
                 {% for name in order %}
                 <tr name="line">
-                    <td>{{name}}</td>
+                    <td name="product">{{name}}</td>
                     <td>{{pricelist[name]}}</td>
                     <td><input name="amount" type="text" value="0"></td>
                 </tr>
@@ -56,6 +56,10 @@
         </table>
     </div>
     <br>
+    <div align="center">
+        <input type="text" name="sample_name">
+        <input type="submit" value=" Сохранить шаблон ">
+    </div>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>

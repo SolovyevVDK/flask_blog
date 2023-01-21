@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;proxyParams&quot;:{&quot;proxyHost&quot;:&quot;&quot;,&quot;proxyPort&quot;:-1,&quot;proxyType&quot;:&quot;IDE_WIDE_PROXY&quot;}}" host="j18163152.myjino.ru" id="26d9abe8-105c-4301-8da0-266ceeeb4ad7" port="2222" nameFormat="DESCRIPTIVE" username="j18163152" useOpenSSHConfig="false" />
+    </configs>
+  </component>
+</project>

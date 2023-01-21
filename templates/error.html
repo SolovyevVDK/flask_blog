@@ -2,12 +2,19 @@
 
 {% block body %}
 
-<div align="center">
-    <h4>{{ the_title }}</h4>
-    Что-то пошло не по плану<br>
-    Проверьте логин и пароль<br>
-    <a href="main.html"> Страница заявки </a>
-</div>
+<table bgcolor="#f0e68c" align="center">
+    <tr>
+        <td>Тип ошибки:</td>
+        <th>{{ type_ex }}</th>
+    </tr>
+    <tr>
+        <td>Текст ошибки:</td>
+        <th>{{ ex }}</th>
+    </tr>
+    <tr>
+        <th align="center" colspan="2"><a href="/"> Страница заявки </a></th>
+    </tr>
+</table>
 
 
 {% endblock %}

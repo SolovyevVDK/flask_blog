@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<form method="post" action="/send">
+<form method="post" action="/send_2">
     <div align="center">
         <img src="static/images/welcome-title.png" />
         <h3>{{the_title}}</h3>
@@ -9,20 +9,27 @@
     <div align="center">
         <table>
             <tr>
-                <th>Дата и время: </th>
-                <td><span id="datetime">{{date}} {{time}}</span></td>
+                <span>Если поля Дата и Время оставить пустыми, то используется текущее</span>
+            </tr>
+            <tr>
+                <th>Укажите дату: </th>
+                <td><input type="date" name="date"></td>
+            </tr>
+            <tr>
+                <th>Укажите время: </th>
+                <td><input type="time" name="time"></td>
             </tr>
             <tr>
                 <th>Склад: </th>
-                <td><span id="chosen_stock">{{stock}}</span></td>
+                <td><span id="chosen_stock">{{sample['stock']}}</span></td>
             </tr>
             <tr>
                 <th>Получатель: </th>
-                <td><span id="chosen_supplier">{{supplier}}</span></td>
+                <td><span id="chosen_supplier">{{sample['supplier']}}</span></td>
             </tr>
             <tr>
                 <th>Категория: </th>
-                <td><span id="chosen_category">{{category}}</span></td>
+                <td><span id="chosen_category">{{sample['category']}}</span></td>
             </tr>
         </table>
     </div>
@@ -34,19 +41,17 @@
                 <th> Количество </th>
                 <th> Сумма </th>
             </tr>
-            {% for name in order %}
-            {% if am[name]|float != 0 %}
+            {% for product, amount in sample['items'].items() %}
             <tr>
-                <td name="product">{{ name }}</td>
-                <td name="price">{{ pricelist[name]|float }}</td>
-                <td name="amount">{{ am[name]|float }}</td>
-                <td>{{ ((pricelist[name]|float) * (am[name]|float)) | round(2) }}</td>
+                <td name="product">{{ product }}</td>
+                <td name="price">{{ pricelist[product]|float }}</td>
+                <td name="amount">{{ amount }}</td>
+                <td>{{ ((pricelist[product]|float) * (amount|float)) | round(2) }}</td>
             </tr>
-            {% endif %}
             {% endfor %}
             <tr>
                 <td colspan="3"> Общая сумма: </td>
-                <td> {{ sum | round(2) }}</td>
+                <td>{{ all_price|float | round(2) }}</td>
             </tr>
         </table>
     </div>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<form method="post" action="/create_sample">
+    <div align="center">
+        <img src="static/images/welcome-title.png" />
+        <h3>{{the_title}}</h3>
+    </div>
+    <div align="center">
+        <a href="/">Бланк заявки</a>
+    <table align="center" style="margin: 50px auto;">
+        <tr>
+            <th>Отгружаем со склада: </th>
+            <td><input type="search" name="stock" list="{{stocks_list}}">
+                <datalist id="{{stocks_list}}">
+                    {% for option in stocks_list %}
+                    <option value="{{option}}"></option>
+                    {% endfor %}
+                </datalist></td>
+        </tr>
+        <tr>
+            <th> Выберите получателя: </th>
+            <td><input type="search" name="supplier" list="{{suppliers_list}}">
+                <datalist id="{{suppliers_list}}">
+                    {% for option in suppliers_list %}
+                    <option value="{{option}}"></option>
+                    {% endfor %}
+                </datalist></td>
+        </tr>
+        <tr>
+            <th> Выберите ценовую категорию: </th>
+            <td>
+                <input type="search" name="categories" list="{{category_list}}">
+                <datalist id="{{category_list}}">
+                    {% for option in category_list %}
+                    <option value="{{option}}"></option>
+                    {% endfor %}
+                </datalist>
+            </td>
+        </tr>
+    </table>
+    <div align="center">
+        <input type="submit" id="buttonPricelist" value=" Выгрузить прайс-лист "/>
+    </div>
+</form>
+
+
+{% endblock %}

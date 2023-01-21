@@ -6,12 +6,18 @@ from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from variables import protocol, server, port, bd, days_per_order
 from datetime import datetime, timedelta
+from pathlib import Path
 
 datetime_string = str(datetime.isoformat(datetime.now()))
 date_now = datetime_string[0:-7:]
 dateto = datetime_string[0: -16]
 datefrom = (str((datetime.now() - timedelta(days=days_per_order))))[0:-16]
 timedata = date_now[11::].replace(':', '-')
+path_to_consignment = Path(Path.cwd(), 'resource_app', 'consignment')
+path_to_pricelist = Path(Path.cwd(), 'resource_app', 'pricelist')
+path_to_txt = Path(Path.cwd(), 'resource_app', 'txt')
+path_to_samples = Path(Path.cwd(), 'resource_app', 'samples')
+encod = 'cp1251'
 
 
 # Получение токена
@@ -42,16 +48,16 @@ def all_write(token):
 def clean_base():
     category = list(read_category().keys())
     for i in category:
-        os.remove(f'log/pricelist/{i}.json')
+        os.remove(Path(path_to_pricelist, f'{i}.txt'))
 
-    os.remove('log/pricelist/Базовый прайс.json')
-    os.remove('log/txt/category.txt')
-    os.remove('log/txt/orders.txt')
-    os.remove('log/txt/orders_name_items.txt')
-    os.remove('log/txt/products_id.txt')
-    os.remove('log/txt/products_name.txt')
-    os.remove('log/txt/stocks.txt')
-    os.remove('log/txt/suppliers.txt')
+    os.remove(Path(path_to_pricelist, 'Базовый прайс.txt'))
+    os.remove(Path(path_to_txt, 'category.txt'))
+    os.remove(Path(path_to_txt, 'orders.txt'))
+    os.remove(Path(path_to_txt, 'orders_name_items.txt'))
+    os.remove(Path(path_to_txt, 'products_id.txt'))
+    os.remove(Path(path_to_txt, 'products_name.txt'))
+    os.remove(Path(path_to_txt, 'stocks.txt'))
+    os.remove(Path(path_to_txt, 'suppliers.txt'))
     return
 
 
@@ -67,14 +73,14 @@ def write_stocks(token):
     for id in soup.find_all('id'):
         stocks_id.append(id.text)
     stocks_full = dict(zip(stocks_list, stocks_id))
-    with open('log/txt/stocks.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'stocks.txt'), 'w', encoding=encod) as file:
         json.dump(stocks_full, file, indent=4, ensure_ascii=False)
     return
 
 
 # Прочитать ИЗ ЛОГА и записать в переменную склады
 def read_stocks():
-    with open('log/txt/stocks.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'stocks.txt'), encoding=encod) as file:
         stocks = json.load(file)
     return stocks
 
@@ -91,14 +97,14 @@ def write_products_name(token):
     for id in soup.find_all('id'):
         products_id.append(id.text)
     products_full = dict(zip(products_list, products_id))
-    with open('log/txt/products_name.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'products_name.txt'), 'w', encoding=encod) as file:
         json.dump(products_full, file, indent=4, ensure_ascii=False)
     return products_full
 
 
 # Прочитать ИЗ ЛОГА продукты {name:id}
 def read_products_name():
-    with open('log/txt/products_name.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'products_name.txt'), encoding=encod) as file:
         products_name = json.load(file)
     return products_name
 
@@ -115,14 +121,14 @@ def write_products_id(token):
     for id in soup.find_all('id'):
         products_id.append(id.text)
     products_full = dict(zip(products_id, products_list))
-    with open('log/txt/products_id.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'products_id.txt'), 'w', encoding=encod) as file:
         json.dump(products_full, file, indent=4, ensure_ascii=False)
     return products_full
 
 
 # Прочитать ИЗ ЛОГА {id:name} продукты
 def read_products_id():
-    with open('log/txt/products_id.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'products_id.txt'), encoding=encod) as file:
         products_id = json.load(file)
     return products_id
 
@@ -139,14 +145,14 @@ def write_suppliers(token):
     for id in soup.find_all('id'):
         suppliers_id.append(id.text)
     suppliers_full = dict(zip(suppliers_list, suppliers_id))
-    with open('log/txt/suppliers.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'suppliers.txt'), 'w', encoding=encod) as file:
         json.dump(suppliers_full, file, indent=4, ensure_ascii=False)
     return suppliers_full
 
 
 # Прочитать ИЗ ЛОГА словарь поставщиков
 def read_suppliers():
-    with open('log/txt/suppliers.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'suppliers.txt'), encoding=encod) as file:
         suppliers = json.load(file)
     return suppliers
 
@@ -157,7 +163,7 @@ def write_orders(token):
            + datefrom + '&dateTo=' + dateto + '&key=' + token.text)
     res = requests.get(url)
     orders = res.json()['response']
-    with open('log/txt/orders.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'orders.txt'), 'w', encoding=encod) as file:
         json.dump(orders, file, indent=4, ensure_ascii=False)
     names = []
     items = []
@@ -167,14 +173,14 @@ def write_orders(token):
 
     orders_full = dict(zip(names, items))
 
-    with open('log/txt/orders_name_items.txt', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'orders_name_items.txt'), 'w', encoding=encod) as file:
         json.dump(orders_full, file, indent=4, ensure_ascii=False)
     return orders_full
 
 
 # Чтение приказов
 def read_orders():
-    with open('log/txt/orders.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'orders.txt'), encoding=encod) as file:
         orders = json.load(file)
     return orders
 
@@ -193,14 +199,14 @@ def write_category(token):
         names.append(name)
         ids.append(id)
         category_list = dict(zip(names, ids))
-        with open('log/txt/category.txt', 'w', encoding='utf-8') as file:
+        with open(Path(path_to_txt, 'category.txt'), 'w', encoding=encod) as file:
             json.dump(category_list, file, indent=4, ensure_ascii=False)
     return category_list
 
 
 # Чтение ИЗ ЛОГА ценовых категорий
 def read_category():
-    with open('log/txt/category.txt', encoding='utf-8') as file:
+    with open(Path(path_to_txt, 'category.txt'), encoding=encod) as file:
         category = json.load(file)
     return category
 
@@ -223,22 +229,22 @@ def category_pricelist():
                 for m in range(len(price_for_category)):
                     if price_for_category[m]['categoryId'] == category[n]:
                         d.update({name: price_for_category[m]['price']})
-        with open(f'log/pricelist/{n}.json', 'w', encoding='utf-8') as fille:
+        with open(Path(path_to_pricelist, f'{n}.txt'), 'w', encoding=encod) as fille:
             json.dump(d, fille, indent=4, ensure_ascii=False)
 
-    with open('log/pricelist/Базовый прайс.json', 'w', encoding='utf-8') as file:
+    with open(Path(path_to_pricelist, 'Базовый прайс.txt'), 'w', encoding=encod) as file:
         json.dump(di, file, indent=4, ensure_ascii=False)
     return
 
 
 def read_category_price(category_name):
-    with open(f'log/pricelist/{category_name}.json', encoding='utf-8') as file:
+    with open(Path(path_to_pricelist, f'{category_name}.txt', encoding=encod)) as file:
         pricelist = json.load(file)
     return pricelist
 
 
 # Формирование накладной
-def data(date, sup, stock, prod, prices, amounts, prodlen):
+def data(date, sup, stock, pricelist, amountlist):
     products_name = read_products_name()
     stock_name = read_stocks()
     supplier_name = read_suppliers()
@@ -248,7 +254,7 @@ def data(date, sup, stock, prod, prices, amounts, prodlen):
     revenueAccountCode = ET.SubElement(document, 'revenueAccountCode')
     counteragentId = ET.SubElement(document, 'counteragentId')
     items = ET.SubElement(document, 'items')
-    for i in range(0, prodlen):
+    for key, value in pricelist.items():
         item = ET.SubElement(items, 'item')
         productId = ET.SubElement(item, 'productId')
         storeId = ET.SubElement(item, 'storeId')
@@ -260,14 +266,14 @@ def data(date, sup, stock, prod, prices, amounts, prodlen):
         useDefaultDocumentTime.text = 'true'
         revenueAccountCode.text = '4.01'
         counteragentId.text = supplier_name[sup]  # Считать название покупателя со страницы
-        productId.text = products_name[prod[i]]  # Считать название продукта со страницы
+        productId.text = products_name[key]  # Считать название продукта со страницы
         storeId.text = stock_name[stock]  # Считать название склада отгрузки со страницы
-        price.text = str(prices[i])  # цена за 1 шт
-        amount.text = str(amounts[i])  # количество
+        price.text = str(value)  # цена за 1 шт
+        amount.text = str(amountlist[key])  # количество
         discountSum.text = '0'  # скидка
-        sum.text = str(float(prices[i]) * float(amounts[i]))  # сумма (цена * количество)
+        sum.text = str(float(value) * float(amountlist[key]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
-    with open(f'log/consignment/consignment_{dateto}_{timedata}.xml', 'w', encoding="utf-8") as file:
+    with open(Path(path_to_consignment, f'consignment_{dateto}_{timedata}.xml'), 'w', encoding=encod) as file:
         file.write(str(new_doc))
     return new_doc
 
