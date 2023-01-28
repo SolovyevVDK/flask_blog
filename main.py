@@ -160,8 +160,10 @@ def main_page_2() -> 'html':
 def send() -> str:
     try:
         try_date = str(chosen_date + 'T' + chosen_time + ':00')
+        comment = request.form['comment-area']
+        print(comment)
         doc = data(sup=chosen_supplier, stock=chosen_stock, date=try_date, pricelist=new_pricelist,
-                   amountlist=new_amountlist)
+                   amountlist=new_amountlist, comments=comment)
         login = request.form['login']
         password = request.form['password']
         token = auth(login, password)

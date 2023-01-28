@@ -45,6 +45,7 @@ def all_write(token):
     category_pricelist()
 
 
+# Очистка всех БД, используется для синхронизации
 def clean_base():
     category = list(read_category().keys())
     for i in category:
@@ -222,7 +223,10 @@ def category_pricelist():
         d = {}
         for i in range(len(orders)):
             for j in range(len(orders[i]['items'])):
-                name = products_id[orders[i]['items'][j]['productId']]
+                try:
+                    name = products_id[orders[i]['items'][j]['productId']]
+                except KeyError as ex:
+                    continue
                 base_price = orders[i]['items'][j]['price']
                 price_for_category = orders[i]['items'][j]['pricesForCategories']
                 di.update({name: base_price})
@@ -244,7 +248,7 @@ def read_category_price(category_name):
 
 
 # Формирование накладной
-def data(date, sup, stock, pricelist, amountlist):
+def data(date, sup, stock, pricelist, amountlist, comments):
     products_name = read_products_name()
     stock_name = read_stocks()
     supplier_name = read_suppliers()
@@ -253,11 +257,14 @@ def data(date, sup, stock, pricelist, amountlist):
     useDefaultDocumentTime = ET.SubElement(document, 'useDefaultDocumentTime')
     revenueAccountCode = ET.SubElement(document, 'revenueAccountCode')
     counteragentId = ET.SubElement(document, 'counteragentId')
+    defaultStoreId = ET.SubElement(document, 'defaultStoreId')
+    defaultStoreId.text = stock_name[stock]
+    comment = ET.SubElement(document, 'comment')
+    comment.text = comments
     items = ET.SubElement(document, 'items')
     for key, value in pricelist.items():
         item = ET.SubElement(items, 'item')
         productId = ET.SubElement(item, 'productId')
-        storeId = ET.SubElement(item, 'storeId')
         price = ET.SubElement(item, 'price')
         amount = ET.SubElement(item, 'amount')
         discountSum = ET.SubElement(item, 'discountSum')
@@ -267,7 +274,6 @@ def data(date, sup, stock, pricelist, amountlist):
         revenueAccountCode.text = '4.01'
         counteragentId.text = supplier_name[sup]  # Считать название покупателя со страницы
         productId.text = products_name[key]  # Считать название продукта со страницы
-        storeId.text = stock_name[stock]  # Считать название склада отгрузки со страницы
         price.text = str(value)  # цена за 1 шт
         amount.text = str(amountlist[key])  # количество
         discountSum.text = '0'  # скидка
