@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="210mm" height="297mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21000 29700"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:vectornator="http://vectornator.io">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#120753}
+    .fil8 {fill:#120753}
+    .fil1 {fill:#6B609A}
+    .fil4 {fill:url(#id0)}
+    .fil5 {fill:url(#id1)}
+    .fil6 {fill:url(#id2)}
+    .fil2 {fill:url(#id3)}
+    .fil3 {fill:url(#id4)}
+    .fil7 {fill:url(#id5)}
+   ]]>
+  </style>
+  <radialGradient id="id0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(16.0895 -0 -0 16.0492 -83118 -184058)" cx="5508.37" cy="12230.4" r="1274.72" fx="5508.37" fy="12230.4">
+   <stop offset="0" style="stop-opacity:1; stop-color:#B1C6E2"/>
+   <stop offset="0.490196" style="stop-opacity:1; stop-color:white"/>
+   <stop offset="0.988235" style="stop-opacity:1; stop-color:#B9CCE8"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#B9CCE8"/>
+  </radialGradient>
+  <radialGradient id="id1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(16.0895 -0 -0 16.0492 -169025 -184058)" xlink:href="#id0" cx="11201.5" cy="12230.4" r="1274.72" fx="11201.5" fy="12230.4">
+  </radialGradient>
+  <radialGradient id="id2" gradientUnits="userSpaceOnUse" gradientTransform="matrix(15.0099 -0 -0 14.9723 -196709 -170915)" xlink:href="#id0" cx="14040.8" cy="12232.4" r="1366.41" fx="14040.8" fy="12232.4">
+  </radialGradient>
+  <radialGradient id="id3" gradientUnits="userSpaceOnUse" gradientTransform="matrix(-1.#IND 1.#QNAN 1.#QNAN -1.#IND -2.14748E+009 -2.14748E+009)" xlink:href="#id0" cx="18107.1" cy="15747.4" r="0" fx="18107.1" fy="15747.4">
+  </radialGradient>
+  <radialGradient id="id4" gradientUnits="userSpaceOnUse" gradientTransform="matrix(11.9916 -0 -0 11.9616 -20697 -134394)" xlink:href="#id0" cx="1883.03" cy="12260.4" r="1710.33" fx="1883.03" fy="12260.4">
+  </radialGradient>
+  <radialGradient id="id5" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.01727 -0 -0 0.620485 -184 4880)" xlink:href="#id0" cx="10680.9" cy="12858.3" r="6689.71" fx="10680.9" fy="12858.3">
+  </radialGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0" x="2006" y="8952" width="17482" height="7779"/>
+  <g id="Создать_x0020_документ_x0020_6.svg">
+   <g id="Итог_x0020_прямоугол_x0020_copy" vectornator:layerName="ÐÑÐ¾Ð³ Ð¿ÑÑÐ¼Ð¾ÑÐ³Ð¾Ð» copy">
+    <polygon class="fil1" points="18217,15840 18217,15840 18217,15840 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <g>
+     <path class="fil1" d="M4134 11692l625 0 -53 250c134,-110 259,-189 375,-236 116,-47 241,-71 375,-71 256,0 461,88 617,264 155,175 233,438 233,786 0,439 -134,809 -402,1112 -230,258 -502,387 -816,387 -323,0 -568,-130 -733,-392l-265 1264 -659 0 703 -3364zm398 1397c0,189 46,336 139,441 92,105 202,157 327,157 109,0 214,-39 315,-118 101,-79 185,-210 252,-392 66,-183 100,-352 100,-508 0,-182 -44,-321 -131,-418 -88,-97 -199,-146 -333,-146 -126,0 -241,45 -344,134 -103,90 -184,221 -240,394 -57,174 -85,326 -85,456z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil1" d="M9079 13114l-1655 0c-2,26 -2,46 -2,59 0,162 46,293 139,392 92,100 205,149 339,149 219,0 390,-113 512,-339l591 99c-115,237 -269,414 -461,533 -192,118 -408,177 -647,177 -328,0 -595,-103 -800,-310 -205,-207 -308,-481 -308,-822 0,-333 93,-630 278,-890 253,-351 614,-527 1083,-527 299,0 536,92 712,276 177,184 265,442 265,774 0,159 -16,302 -46,429zm-557 -401c2,-29 3,-52 3,-67 0,-180 -41,-316 -122,-406 -81,-90 -190,-135 -326,-135 -137,0 -259,51 -367,154 -108,102 -181,253 -220,454l1032 0z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil1" d="M12579 13116c0,-451 128,-810 383,-1079 255,-268 590,-402 1005,-402 360,0 642,99 844,297 202,198 303,464 303,799 0,394 -126,735 -379,1022 -253,288 -591,431 -1016,431 -230,0 -434,-45 -611,-137 -178,-92 -311,-222 -398,-390 -87,-168 -131,-348 -131,-541zm1880 -470c0,-156 -45,-281 -137,-375 -91,-94 -208,-141 -352,-141 -143,0 -269,44 -380,132 -110,88 -196,216 -257,383 -61,167 -92,321 -92,462 0,174 48,312 143,415 95,102 214,153 358,153 181,0 333,-77 455,-231 175,-219 262,-485 262,-798z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <polygon class="fil1" points="16037,11692 16689,11692 16496,12593 17404,12593 17597,11692 18250,11692 17731,14127 17078,14127 17296,13105 16386,13105 16168,14127 15517,14127 " vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    </g>
+    <g>
+     <path class="fil1" d="M4134 11692l625 0 -53 250c134,-110 259,-189 375,-236 116,-47 241,-71 375,-71 256,0 461,88 617,264 155,175 233,438 233,786 0,439 -134,809 -402,1112 -230,258 -502,387 -816,387 -323,0 -568,-130 -733,-392l-265 1264 -659 0 703 -3364zm398 1397c0,189 46,336 139,441 92,105 202,157 327,157 109,0 214,-39 315,-118 101,-79 185,-210 252,-392 66,-183 100,-352 100,-508 0,-182 -44,-321 -131,-418 -88,-97 -199,-146 -333,-146 -126,0 -241,45 -344,134 -103,90 -184,221 -240,394 -57,174 -85,326 -85,456z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil1" d="M9079 13114l-1655 0c-2,26 -2,46 -2,59 0,162 46,293 139,392 92,100 205,149 339,149 219,0 390,-113 512,-339l591 99c-115,237 -269,414 -461,533 -192,118 -408,177 -647,177 -328,0 -595,-103 -800,-310 -205,-207 -308,-481 -308,-822 0,-333 93,-630 278,-890 253,-351 614,-527 1083,-527 299,0 536,92 712,276 177,184 265,442 265,774 0,159 -16,302 -46,429zm-557 -401c2,-29 3,-52 3,-67 0,-180 -41,-316 -122,-406 -81,-90 -190,-135 -326,-135 -137,0 -259,51 -367,154 -108,102 -181,253 -220,454l1032 0z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil1" d="M12579 13116c0,-451 128,-810 383,-1079 255,-268 590,-402 1005,-402 360,0 642,99 844,297 202,198 303,464 303,799 0,394 -126,735 -379,1022 -253,288 -591,431 -1016,431 -230,0 -434,-45 -611,-137 -178,-92 -311,-222 -398,-390 -87,-168 -131,-348 -131,-541zm1880 -470c0,-156 -45,-281 -137,-375 -91,-94 -208,-141 -352,-141 -143,0 -269,44 -380,132 -110,88 -196,216 -257,383 -61,167 -92,321 -92,462 0,174 48,312 143,415 95,102 214,153 358,153 181,0 333,-77 455,-231 175,-219 262,-485 262,-798z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <polygon class="fil1" points="16037,11692 16689,11692 16496,12593 17404,12593 17597,11692 18250,11692 17731,14127 17078,14127 17296,13105 16386,13105 16168,14127 15517,14127 " vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    </g>
+    <polygon class="fil1" points="11794,8753 11867,8753 11867,8753 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="11867,10069 11867,10069 11867,10331 11867,10331 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="11794,16221 11794,16221 11794,16225 11794,16225 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="11432,14369 11433,14369 11433,14369 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="16437,8753 16500,8753 16500,8753 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="8571,7844 8626,7844 8626,7844 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.03571" vectornator:shadowOffset="3.75" vectornator:shadowAngle="0.0183793"/>
+    <polygon class="fil1" points="7285,10200 7341,10200 7341,10200 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <polygon class="fil1" points="2778,14851 2833,14851 2833,14851 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="2.76786" vectornator:shadowOffset="10.8929" vectornator:shadowAngle="0.0183793"/>
+    <g>
+    </g>
+    <g>
+    </g>
+    <g>
+     <path class="fil1" d="M8570 14856l2217 0 -2217 0zm0 0l0 0 0 0z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    </g>
+    <path class="fil1" d="M4596 10486l9771 0 -367 571 -9765 0 361 -571zm3081 4370l9937 -10 -415 571 -9858 0 336 -561zm3122 -3799l2327 0 -2332 3799 -2347 0 2352 -3799z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+   </g>
+  </g>
+  <g id="Создать_x0020_документ_x0020_6_x0020__x0028_1_x0029_.svg">
+   <g id="Итог_x0020_прямоугол_x0020_copy_0" vectornator:layerName="ÐÑÐ¾Ð³ Ð¿ÑÑÐ¼Ð¾ÑÐ³Ð¾Ð» copy">
+    <polygon class="fil2" points="18107,15747 18107,15747 18107,15747 " vectornator:shadowColor="#9084c4" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    <g>
+     <path class="fil3" d="M4024 11599l625 0 -53 250c134,-110 259,-188 375,-236 116,-47 241,-71 375,-71 256,0 461,88 617,264 155,175 233,438 233,786 0,439 -134,809 -402,1112 -230,258 -502,388 -816,388 -323,0 -568,-131 -733,-393l-265 1264 -659 0 703 -3364zm398 1397c0,189 46,336 139,441 92,105 202,157 327,157 109,0 214,-39 315,-118 101,-79 185,-209 252,-392 66,-183 100,-352 100,-508 0,-182 -44,-321 -131,-418 -88,-97 -199,-146 -334,-146 -125,0 -240,45 -343,134 -104,90 -184,221 -240,395 -57,173 -85,325 -85,455z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil4" d="M8969 13021l-1655 0c-2,26 -3,46 -3,59 0,162 47,293 140,393 92,99 205,149 339,149 219,0 390,-114 512,-340l591 99c-115,237 -269,414 -461,533 -192,118 -408,178 -647,178 -328,0 -595,-104 -800,-311 -205,-207 -308,-481 -308,-822 0,-333 93,-630 278,-890 253,-351 614,-527 1083,-527 299,0 536,92 712,276 177,185 265,442 265,774 0,159 -16,302 -46,429zm-557 -401c2,-29 3,-52 3,-67 0,-180 -41,-315 -122,-406 -81,-90 -190,-135 -326,-135 -137,0 -259,51 -367,154 -108,102 -181,253 -220,454l1032 0z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <path class="fil5" d="M12469 13023c0,-451 128,-810 383,-1079 255,-268 590,-402 1005,-402 360,0 642,99 844,297 202,198 303,464 303,799 0,394 -126,735 -379,1023 -253,287 -591,431 -1016,431 -230,0 -434,-46 -611,-138 -178,-92 -311,-222 -398,-390 -87,-168 -131,-348 -131,-541zm1880 -470c0,-156 -45,-281 -137,-375 -91,-94 -208,-141 -352,-141 -143,0 -269,44 -380,132 -110,88 -196,216 -257,383 -61,167 -92,321 -92,462 0,174 47,313 142,415 95,102 215,154 359,154 181,0 333,-78 455,-232 175,-219 262,-485 262,-798z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+     <polygon class="fil6" points="15927,11599 16579,11599 16386,12500 17294,12500 17487,11599 18140,11599 17621,14034 16968,14034 17186,13012 16276,13012 16058,14034 15407,14034 " vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+    </g>
+    <path class="fil7" d="M4486 10393l9771 0 -367 571 -9765 0 361 -571zm3095 4365l3129 0 6794 0 -415 566 -9858 0 350 -566zm3108 -3794l2327 0 -2339 3794 -2340 0 2352 -3794z" vectornator:shadowColor="#6b609a" vectornator:shadowOpacity="1" vectornator:shadowRadius="1.33929" vectornator:shadowOffset="5.80357" vectornator:shadowAngle="0.788805"/>
+   </g>
+  </g>
+  <rect class="fil8" x="3689" y="12268" width="5759" height="106"/>
+  <rect class="fil8" x="12247" y="13278" width="5759" height="106"/>
+ </g>
+</svg>

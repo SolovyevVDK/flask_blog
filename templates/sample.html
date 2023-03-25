@@ -1,48 +1,126 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<form method="post" action="/create_sample">
-    <div align="center">
-        <img src="static/images/welcome-title.png" />
-        <h3>{{the_title}}</h3>
-    </div>
-    <div align="center">
-        <a href="/">Бланк заявки</a>
-    <table align="center" style="margin: 50px auto;">
-        <tr>
-            <th>Отгружаем со склада: </th>
-            <td><input type="search" name="stock" list="{{stocks_list}}">
-                <datalist id="{{stocks_list}}">
-                    {% for option in stocks_list %}
-                    <option value="{{option}}"></option>
-                    {% endfor %}
-                </datalist></td>
-        </tr>
-        <tr>
-            <th> Выберите получателя: </th>
-            <td><input type="search" name="supplier" list="{{suppliers_list}}">
-                <datalist id="{{suppliers_list}}">
-                    {% for option in suppliers_list %}
-                    <option value="{{option}}"></option>
-                    {% endfor %}
-                </datalist></td>
-        </tr>
-        <tr>
-            <th> Выберите ценовую категорию: </th>
-            <td>
-                <input type="search" name="categories" list="{{category_list}}">
-                <datalist id="{{category_list}}">
-                    {% for option in category_list %}
-                    <option value="{{option}}"></option>
-                    {% endfor %}
-                </datalist>
-            </td>
-        </tr>
-    </table>
-    <div align="center">
-        <input type="submit" id="buttonPricelist" value=" Выгрузить прайс-лист "/>
-    </div>
-</form>
 
-
+    <link rel="stylesheet" href="static/css/sample.css" media="screen">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="sample">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-valign-middle-lg u-valign-middle-xl u-section-1" id="sec-fc47">
+      <div class="u-container-style u-expanded-width-xs u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+        <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-container-layout-1">
+          <div class="u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-group u-opacity u-opacity-35 u-palette-3-base u-group-2">
+            <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-container-layout-2">
+              <p class="u-text u-text-default u-text-1">Шаблоны - неизменяемые списки. Вы можете создать шаблон с часто используемыми позициями и далее использовать, изменяя лишь их количество.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+        <div class="u-layout">
+          <div class="u-layout-row">
+            <div class="u-container-align-center-xl u-container-style u-layout-cell u-size-27-md u-size-27-sm u-size-27-xs u-size-30-lg u-size-30-xl u-layout-cell-1">
+              <div class="u-container-layout u-valign-middle-lg u-valign-middle-xl u-container-layout-3">
+                <div class="u-container-style u-expanded-width-xl u-grey-10 u-group u-opacity u-opacity-65 u-group-3">
+                  <div class="u-container-layout u-container-layout-4">
+                    <h6 class="u-text u-text-default u-text-2">Использовать шаблон</h6>
+                    <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
+                      <form method="post" action="/sample_send" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                        <div class="u-form-group u-form-select u-label-left u-form-group-1">
+                          <label for="select-e934" class="u-label u-spacing-0 u-label-1">Выберите шаблон</label>
+                          <div class="u-form-select-wrapper">
+                            <input id="select-e934" type="search" name="sample" list="{{sample_list}}" class="u-input u-input-rectangle u-input-1">
+                            <datalist id="{{sample_list}}">
+                              {% for sample in sample_list %}
+                              <option value="{{sample}}"></option>
+                              {% endfor %}
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="u-align-center-lg u-align-center-md u-align-center-xl u-form-group u-form-submit u-label-left">
+                          <label class="u-label u-spacing-0 u-label-2"></label>
+                          <div class="u-align-left-lg u-align-left-md u-align-left-sm u-align-left-xs u-btn-submit-container">
+                            <input type="submit" value="Продолжить" class="u-border-none u-btn u-btn-submit u-button-style u-hover-white u-btn-1">
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-container-style u-layout-cell u-size-30-lg u-size-30-xl u-size-33-md u-size-33-sm u-size-33-xs u-layout-cell-2">
+              <div class="u-container-layout u-valign-top-sm u-container-layout-5">
+                <div class="u-container-style u-expanded-width-lg u-expanded-width-xl u-grey-10 u-group u-opacity u-opacity-65 u-group-4">
+                  <div class="u-container-layout u-valign-top-xs u-container-layout-6">
+                    <h6 class="u-text u-text-default u-text-3">Создать шаблон</h6>
+                    <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-form u-form-2">
+                      <form action="/create_sample" method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form-1" style="padding: 10px;">
+                        <div class="u-form-group u-form-select u-label-left u-form-group-3">
+                          <label for="select-a84e" class="u-label u-spacing-0 u-label-3">Склад отгрузки</label>
+                          <div class="u-form-select-wrapper">
+                            <input id="select-a84e" type="search" name="stock" list="{{stocks_list}}" class="u-input u-input-rectangle u-input-2" required="required">
+                            <datalist id="{{stocks_list}}">
+                              {% for option in stocks_list %}
+                              <option value="{{option}}"></option>
+                              {% endfor %}
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="u-form-group u-form-select u-label-left u-form-group-4">
+                          <label for="select-59e5" class="u-label u-spacing-0 u-label-4">Получатель</label>
+                          <div class="u-form-select-wrapper">
+                            <input id="select-59e5" type="search" name="supplier" list="{{suppliers_list}}" class="u-input u-input-rectangle u-input-3" required="required">
+                            <datalist id="{{suppliers_list}}">
+                              {% for option in suppliers_list %}
+                              <option value="{{option}}"></option>
+                              {% endfor %}
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="u-form-group u-form-select u-label-left u-form-group-5">
+                          <label for="select-d8fb" class="u-label u-spacing-0 u-label-5">Ценовая категория</label>
+                          <div class="u-form-select-wrapper">
+                            <input id="select-d8fb" type="search" name="categories" list="{{category_list}}" class="u-input u-input-rectangle u-input-4" required="required">
+                            <datalist id="{{category_list}}">
+                              {% for option in category_list %}
+                              <option value="{{option}}"></option>
+                              {% endfor %}
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="u-form-group u-label-left u-form-group-6">
+                          <label for="text-2126" class="u-label u-spacing-0 u-label-6">Имя</label>
+                          <input type="text" placeholder="Задайте имя" id="text-2126" name="text" class="u-input u-input-rectangle u-input-5" required="required">
+                        </div>
+                        <div class="u-form-group u-form-submit u-label-left">
+                          <label class="u-label u-spacing-0 u-label-7"></label>
+                          <div class="u-align-center-lg u-align-center-md u-align-center-xl u-align-center-xs u-align-left-sm u-btn-submit-container">
+                            <input type="submit" value="Выгрузить список" class="u-border-none u-btn u-btn-submit u-button-style u-hover-white u-btn-2">
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+  
 {% endblock %}

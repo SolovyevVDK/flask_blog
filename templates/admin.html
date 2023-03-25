@@ -1,55 +1,85 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-<div align="center">
-    <h4>{{ the_title }}</h4>
-    <span>
-        Будьте внимательны при изменении<br>
-        эти настроек!<br>
-
-    </span>
-    <form method='POST' action="/admin_nice">
-        <table align="center">
-            <thead align="">
-                <tr align="center">
-                    <th align="center"> </th>
-                    <th align="center"> Протокол </th>
-                    <th align="center"> Сервер </th>
-                    <th align="center"> Порт </th>
-                    <th align="center"> БД </th>
-                    <th align="center"> Срок приказов </th>
-                </tr>
-            </thead>
-            <tbody align="center">
-                <tr>
-                    <th> Текущие значения </th>
-                    <td> {{protocol}} </td>
-                    <td> {{server}} </td>
-                    <td> {{port}} </td>
-                    <td> {{bd}} </td>
-                    <td> {{days_per_order}} </td>
-                </tr>
-                <tr>
-                    <th> Введите новые значения </th>
-                    <td> <input name="protocol" type="text"></td>
-                    <td> <input name="server" type="text"></td>
-                    <td> <input name="port" type="text"></td>
-                    <td> <input name="bd" type="text"></td>
-                    <td> <input name="days_per_order" type="text"></td>
-                </tr>
-            </tbody>
-        </table>
-        <p><input type="submit" value=" Сохранить настройки " /></p>
-        <div align="center">
-            После выполнения данных<br>
-            настроек необходимо выполнить<br>
-            синхронизацию с базой<br>
-            <a href="/auth">Синхронизация</a><br>
-            <a href="/">Бланк заявки</a>
+    <link rel="stylesheet" href="static/css/admin.css" media="screen">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="admin">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-section-1" id="sec-b2a3">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-align-left u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <form method="post" action="/admin_nice" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px;">
+              <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                <table class="u-table-entity">
+                  <colgroup>
+                    <col width="20%">
+                    <col width="16%">
+                    <col width="16%">
+                    <col width="16%">
+                    <col width="16%">
+                    <col width="16%">
+                  </colgroup>
+                  <thead class="u-align-center u-table-header u-white u-table-header-1">
+                    <tr style="height: 49px;">
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell"></th>
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Протокол</th>
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Сервер</th>
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Порт</th>
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell">БД (/resto)</th>
+                      <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Срок приказов</th>
+                    </tr>
+                  </thead>
+                  <tbody class="u-table-body">
+                    <tr style="height: 49px;">
+                      <td class="u-align-center u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-white">Текущие значения</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">{{protocol}}</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">{{server}}</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">{{port}}</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">{{bd}}</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">{{days_per_order}}</td>
+                    </tr>
+                    <tr style="height: 49px;">
+                      <td class="u-align-center u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-white">Новые значения</td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                          <input class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="text" name="protocol" required="required">
+                      </td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                          <input class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="text" name="server" required="required">
+                      </td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                          <input class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="text" name="port" required="required">
+                      </td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                          <input class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="text" name="bd" required="required">
+                      </td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                          <input class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="text" name="days_per_order" required="required">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <input type="submit" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1" value="Сохранить настройки"/>
+            </form>
+            <h4 class="u-text u-text-1">После изменения настроек необходимо произвести перезапуск сервера и синхронизацию с iiko</h4>
+            <a href="https://cp-hosting.jino.ru/a/zd6gy/management/webserver/general/" class="u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-btn u-button-style u-none u-btn-2" target="_blank">На страницу управления веб-сервером</a>
+          </div>
         </div>
-    </form>
-</div>
-
-
+      </div>
+    </section>
+    
+    
+    
+  
 {% endblock %}

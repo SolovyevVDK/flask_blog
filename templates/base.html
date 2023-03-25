@@ -1,23 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ the_title }}</title>
-    <div align="center">
-      {{ title_2 }}
-    </div>
-    <link rel="stylesheet" href="static/hf.css" />
-  </head>
-  <body>
-  <style>
-   li {
-    list-style-type: none; /* Убираем маркеры */
-   }
-   ul {
-    padding-left: 0; /* Сдвигаем список влево */
-   }
-  </style>
+<html style="font-size: 18px;" lang="ru"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>{{the_title}}</title>
+    <link rel="stylesheet" href="static/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="static/css/base.css" media="screen">
+    <script class="u-script" type="text/javascript" src="static/scripts/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="static/scripts/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 5.6.2, nicepage.com">
+    <link rel="icon" href="static/images/favicon.png">
+    <link id="u-theme-google-font" rel="stylesheet" href="static/css/fonts.css">
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5",
+		"logo": "images/Logo_Red-04.svg"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="base">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-gradient u-xl-mode" data-lang="ru" style="background-image: linear-gradient(to right, white, #db545a);"><header class="u-clearfix u-header u-sticky u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-white" id="sec-dcb2"><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://lavkaguskaras.ru/" class="u-image u-logo u-image-1" data-image-width="300" data-image-height="97" title="Тут вкусные пирожки" target="_blank">
+          <img src="static/images/Logo_Red-04.svg" class="u-logo-image u-logo-image-1">
+        </a>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-bottom-sm u-valign-bottom-xs u-valign-middle-xl u-container-layout-1">
+                <a href="/" title="Страница заявки" class="u-active-none u-border-2 u-border-black u-border-hover-black u-btn u-button-style u-custom-item u-hover-palette-3-light-2 u-none u-text-black u-text-hover-black u-btn-1">Главная</a>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-bottom-sm u-valign-bottom-xs u-valign-middle-xl u-container-layout-2">
+                <a href="/auth" title="Последняя синхронизация выполнена: {{synch_time}}" class="u-border-2 u-border-grey-75 u-border-hover-black u-btn u-button-style u-custom-item u-hover-palette-3-light-2 u-none u-btn-2">Синхронизация</a>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-bottom-sm u-valign-bottom-xs u-valign-middle-xl u-container-layout-3">
+                <a href="/create" title="Создать либо использовать шаблон"class="u-border-2 u-border-grey-75 u-border-hover-black u-btn u-button-style u-custom-item u-hover-palette-3-light-2 u-none u-btn-3">Шаблоны</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></header>
     {% block body %}
 
     {% endblock %}
-  </body>
-</html>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-3cb9"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-default u-text-grey-70 u-text-variant u-text-1">Разработал: Che в 2023г.&nbsp;<br>ООО "Резон ДВ" rezon-dv.site<br>
+          <br>
+        </p>
+        <a href="https://wa.me/79841423997" class="u-active-none u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-1-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-rectangle u-button-style u-hover-none u-none u-radius-0 u-top-left-radius-0 u-top-right-radius-0 u-btn-1" target="_blank">Написать в техподдержку</a>
+        <img class="u-image u-image-circle u-image-contain u-image-1" src="static/images/Rezon_NewLogo.svg" alt="" data-image-width="210" data-image-height="297">
+      </div></footer>
+  
+</body></html>

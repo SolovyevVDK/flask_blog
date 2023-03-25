@@ -1,28 +1,47 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-<div align="center">
-    <h4>{{ the_title }}</h4>
-    <span>
-        Для синхронизации с сервером iiko<br>
-        необходимо ввести логин и пароль<br>
-
-    </span>
-    <form method='POST' action="/synch">
-        <table>
-            <tr>
-                <td>Логин:</td>
-                <td><input name="login" type="text"/></td>
-            </tr>
-            <tr>
-                <td>Пароль:</td>
-                <td><input name="password" type="password" /></td>
-            </tr>
-        </table>
-        <p><input type="submit" value=" Выполнить синхронизацию " /></p>
-    </form>
-</div>
-
-
+    <link rel="stylesheet" href="static/css/auth.css" media="screen">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="auth">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-section-1" id="sec-204e">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <div class="u-form u-form-1">
+              <form method="POST" action="/synch" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                <p class="u-align-center u-form-group u-form-text u-text u-text-1">Пройдите авторизацию</p>
+                  <p class="u-align-center u-form-group u-form-text u-text u-text-1"><font size="0.1"><em>Последняя синронизация выполнена: {{ synch_time }}</em></font></p>
+                <div class="u-form-group u-form-name">
+                  <label for="name-8eb9" class="u-label">Логин</label>
+                  <input type="text" placeholder="Логин от iikoOffice" id="name-8eb9" name="login" class="u-input u-input-rectangle" required="required">
+                </div>
+                <div class="u-form-group">
+                  <label for="email-8eb9" class="u-label">Пароль</label>
+                  <input type="password" placeholder="Пароль от iikoOffice" id="email-8eb9" name="password" class="u-input u-input-rectangle" required="required">
+                </div>
+                <div class="u-align-center u-form-group u-form-submit">
+                  <input type="submit" value="Синхронизировать" class="u-btn u-btn-submit u-button-style">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+  
 {% endblock %}

@@ -1,0 +1,275 @@
+ .u-section-1 {
+  background-image: url("images/237807110-0.jpeg");
+  background-position: 50% 50%;
+  min-height: 649px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-layout-cell-1 {
+  min-height: 649px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 20px 10px;
+}
+
+.u-section-1 .u-group-1 {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: auto;
+}
+
+.u-section-1 .u-table-1 {
+  height: 147px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-block-da91-56 {
+  font-weight: 700;
+}
+
+.u-block-da91-62 {
+  height: 49px;
+}
+
+.u-section-1 .u-table-body-1 {
+  background-image: none;
+  font-size: 1rem;
+}
+
+.u-section-1 .u-table-cell-1 {
+  font-weight: 700;
+}
+
+.u-section-1 .u-table-cell-3 {
+  font-weight: 700;
+}
+
+.u-section-1 .u-table-cell-5 {
+  font-weight: 700;
+}
+
+.u-block-da91-73 {
+  height: 49px;
+}
+
+.u-section-1 .u-form-1 {
+  margin-top: 20px;
+  height: 461px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-form-group-1 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-input-1 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-2 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-input-2 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-form-group-3 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-3 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-input-3 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-form-group-4 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-4 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-input-4 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-btn-1 {
+  font-size: 0.888889rem;
+}
+
+.u-section-1 .u-layout-cell-2 {
+  min-height: 649px;
+}
+
+.u-section-1 .u-container-layout-3 {
+  padding: 20px 10px;
+}
+
+.u-section-1 .u-table-2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-table-header-1 {
+  background-image: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.u-section-1 .u-table-body-2 {
+  background-image: none;
+  font-size: 1rem;
+}
+
+.u-section-1 .u-table-cell-15 {
+  font-weight: 700;
+}
+
+.u-block-da91-112 {
+  height: 49px;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    min-height: 421px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    margin-top: 50px;
+    margin-bottom: 19px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 535px;
+  }
+
+  .u-section-1 .u-group-1 {
+    height: auto;
+  }
+
+  .u-section-1 .u-table-body-1 {
+    font-size: 0.888889rem;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 535px;
+  }
+
+  .u-section-1 .u-table-header-1 {
+    font-size: 0.888889rem;
+  }
+
+  .u-section-1 .u-table-body-2 {
+    font-size: 0.888889rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 100px;
+  }
+
+  .u-section-1 .u-form-1 {
+    height: 442px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    min-height: 521px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-layout-wrap-1 {
+    width: 410px;
+    margin-top: 42px;
+    margin-right: auto;
+    margin-left: calc(((100% - 1140px) / 2) + 365px);
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .u-section-1 .u-table-body-1 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-label-1 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-input-1 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-label-2 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-input-2 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-label-3 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-input-3 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-label-4 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-input-4 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-btn-1 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-container-layout-3 {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .u-section-1 .u-table-2 {
+    margin-top: 1px;
+  }
+
+  .u-section-1 .u-table-header-1 {
+    font-size: 0.777778rem;
+  }
+
+  .u-section-1 .u-table-body-2 {
+    font-size: 0.777778rem;
+  }
+}
