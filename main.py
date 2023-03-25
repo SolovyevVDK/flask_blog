@@ -25,6 +25,8 @@ sample_full = None
 pricelist_sample = None
 new_amountlist = None
 new_pricelist = None
+sample_pricelist = None
+sample_name = None
 
 # Определите приложение.
 app = Flask(__name__)
@@ -33,9 +35,12 @@ app = Flask(__name__)
 # Определите базовый маршрут URI и функцию.
 @app.route('/auth', methods=['post', 'get'])
 def auth_page() -> 'html':
+    with open(Path(path_to_txt, 'synch.txt'), 'r', encoding=encod) as file:
+        synch_time = file.read()
     try:
         return render_template('auth.html',
-                               the_title='Авторизация')
+                               the_title='Авторизация',
+                               synch_time=synch_time)
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -44,6 +49,8 @@ def auth_page() -> 'html':
 
 @app.route("/", methods=['post', 'get'])
 def main_page() -> 'html':
+    with open(Path(path_to_txt, 'synch.txt'), 'r', encoding=encod) as file:
+        synch_time = file.read()
     try:
         cat = os.path.exists(Path(path_to_txt, 'category.txt'))
         ord = os.path.exists(Path(path_to_txt, 'orders.txt'))
@@ -57,26 +64,18 @@ def main_page() -> 'html':
                                    the_title='Нет данных',
                                    title_2='На сервере нет данных из iiko, выполните синхронизацию')
         else:
-            with open(Path(path_to_txt, 'synch.txt'), 'r', encoding=encod) as file:
-                synch_time = file.read()
             stocks_name = list(read_stocks().keys())
             products_name = list(read_products_name().keys())
             suppliers_name = list(read_suppliers().keys())
             category_name = list(read_category().keys())
             category_name.append('Базовый прайс')
-            try:
-                with open(Path(path_to_samples, 'sample_list.txt'), encoding=encod) as file:
-                    sample_list = json.load(file)
-            except FileNotFoundError:
-                sample_list = []
-            return render_template("main.html",
+            return render_template("invoice_create.html",
                                    the_title='Бланк заявки',
                                    stocks_list=stocks_name,
                                    prod_list=products_name,
                                    suppliers_list=suppliers_name,
                                    category_list=category_name,
-                                   synch_time=synch_time,
-                                   sample_list=sample_list)
+                                   synch_time=synch_time)
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -86,12 +85,10 @@ def main_page() -> 'html':
 @app.route("/main_complete", methods=['post', 'get'])
 def main_page_1() -> 'html':
     try:
-        global chosen_stock, chosen_supplier, chosen_category, pricelist, chosen_time, chosen_date
+        global chosen_stock, chosen_supplier, chosen_category, pricelist
         chosen_stock = request.form['stock']
         chosen_supplier = request.form['supplier']
         chosen_category = request.form['categories']
-        chosen_date = request.form['date']
-        chosen_time = request.form['time']
         pricelist = read_category_price(chosen_category)
         pricelist = dict(sorted(pricelist.items()))
         order = list(pricelist.keys())
@@ -102,9 +99,7 @@ def main_page_1() -> 'html':
                                supplier=chosen_supplier,
                                category=chosen_category,
                                pricelist=pricelist,
-                               order=order,
-                               time=chosen_time,
-                               date=chosen_date)
+                               order=order)
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -161,7 +156,6 @@ def send() -> str:
     try:
         try_date = str(chosen_date + 'T' + chosen_time + ':00')
         comment = request.form['comment-area']
-        print(comment)
         doc = data(sup=chosen_supplier, stock=chosen_stock, date=try_date, pricelist=new_pricelist,
                    amountlist=new_amountlist, comments=comment)
         login = request.form['login']
@@ -176,7 +170,7 @@ def send() -> str:
         else:
             return render_template("error.html",
                                    ex=token,
-                                   the_title="Ошибка загрузки накладной, отправьте скриншот в поддержку")
+                                   type_ex="Ошибка загрузки накладной, отправьте скриншот в поддержку")
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -253,15 +247,21 @@ def admin_page_2() -> 'html':
 @app.route("/create", methods=["post", "get"])
 def create_sample() -> 'html':
     try:
+        with open(Path(path_to_samples, 'sample_list.txt'), encoding=encod) as file:
+            sample_list = json.load(file)
+    except FileNotFoundError:
+        sample_list = []
+    try:
         stocks_name = list(read_stocks().keys())
         suppliers_name = list(read_suppliers().keys())
         category_name = list(read_category().keys())
         category_name.append('Базовый прайс')
         return render_template('sample.html',
-                               the_title="Создание шаблона",
+                               the_title="Шаблоны",
                                stocks_list=stocks_name,
                                suppliers_list=suppliers_name,
-                               category_list=category_name)
+                               category_list=category_name,
+                               sample_list=sample_list)
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -271,18 +271,16 @@ def create_sample() -> 'html':
 @app.route("/create_sample", methods=["post", "get"])
 def sample_create() -> 'html':
     try:
-        global sample_stock, sample_supplier, sample_category, sample_pricelist
+        global sample_stock, sample_supplier, sample_category, sample_pricelist, sample_name
         sample_stock = request.form['stock']
         sample_supplier = request.form['supplier']
         sample_category = request.form['categories']
+        sample_name = request.form['sample_name']
         sample_pricelist = read_category_price(sample_category)
         order = list(sample_pricelist.keys())
         order.sort()
         return render_template("sample_complete.html",
                                the_title='Создание шаблона',
-                               stock=sample_stock,
-                               supplier=sample_supplier,
-                               category=sample_category,
                                pricelist=sample_pricelist,
                                order=order)
     except Exception as ex:
@@ -297,14 +295,17 @@ def save_sample() -> str:
         product_sample = list(sample_pricelist.keys())
         product_sample.sort()
         amount_sample = request.form.getlist('amount')
-        sample_name = request.form['sample_name']
+        print(amount_sample)
         sample_product_amount = dict(zip(product_sample, amount_sample))
+        print(sample_product_amount)
         new_sample = {}
         for key, value in sample_product_amount.items():
-            if value == '0':
+            if value != 'on':
                 continue
             else:
                 new_sample[key] = value
+
+        print(new_sample)
         file_sample = {
             'name': sample_name,
             'stock': sample_stock,
@@ -327,7 +328,7 @@ def save_sample() -> str:
         with open(Path(path_to_samples, 'sample_list.txt'), 'w', encoding=encod) as file:
             json.dump(sample_list, file, indent=4, ensure_ascii=False)
         return render_template("nice.html",
-                               the_title='Шаблон сохранен')
+                               the_title=f'Шаблон {sample_name} сохранен')
     except Exception as ex:
         return render_template("error.html",
                                type_ex=ex.__class__,
@@ -357,7 +358,7 @@ def sample_send() -> 'html':
         for product, amount in sample_full['items'].items():
             all_price += float(pricelist_sample[product]) * float(amount)
         return render_template('sample_main_finally.html',
-                               the_title=f'Заявка по шаблону {sample_full["name"]}',
+                               the_title="Проверка перед отправкой",
                                pricelist=pricelist_sample,
                                sample=sample_full,
                                all_price=all_price)
@@ -372,6 +373,7 @@ def send_2() -> str:
     try:
         sample_date = request.form['date']
         sample_time = request.form['time']
+        comment = request.form['comment-area']
         try_date = str(sample_date + 'T' + sample_time + ':00')
         sample_amountlist = dict(zip(list(pricelist_sample.keys()), list(sample_full['items'].values())))
         print(sample_amountlist)
@@ -379,7 +381,8 @@ def send_2() -> str:
                    stock=sample_full['stock'],
                    date=try_date,
                    pricelist=pricelist_sample,
-                   amountlist=sample_amountlist)
+                   amountlist=sample_amountlist,
+                   comments=comment)
         login = request.form['login']
         password = request.form['password']
         token = auth(login, password)

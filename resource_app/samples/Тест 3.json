@@ -1,0 +1,10 @@
+{
+    "name": "Тест 3",
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "category": "надбавка 20%",
+    "items": {
+        "Банан": "1",
+        "Булочка": "1"
+    }
+}

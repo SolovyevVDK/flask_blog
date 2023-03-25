@@ -1,0 +1,10 @@
+{
+    "name": "hytb",
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "category": "надбавка 20%",
+    "items": {
+        "Американо": "on",
+        "Банан": "on"
+    }
+}

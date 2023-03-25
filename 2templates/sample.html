@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>{{the_title}}</title>
+    <link rel="stylesheet" href="static/css/sample.css" media="screen">
+    <meta name="generator" content="Nicepage 5.6.2, nicepage.com">
+    <meta name="referrer" content="origin">
+
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="sample">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-section-1" id="sec-fc47">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <div class="u-container-style u-expanded-width u-group u-opacity u-opacity-35 u-palette-3-base u-group-2">
+              <div class="u-container-layout u-container-layout-2">
+                <p class="u-text u-text-default u-text-1">Шаблоны - неизменяемые списки. Вы можете создать шаблон с часто используемыми позициями и далее использовать, изменяя лишь их количество.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-65 u-group-3">
+          <div class="u-container-layout u-valign-bottom u-container-layout-3">
+            <div class="u-container-style u-group u-opacity u-opacity-40 u-palette-3-base u-group-4">
+              <div class="u-container-layout u-valign-top u-container-layout-4">
+                <h4 class="u-text u-text-default u-text-2">Использовать шаблон</h4>
+                <div class="u-form u-form-1">
+                  <form method="post" action="/sample_send" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                    <div class="u-form-group u-form-select u-form-group-1">
+                      <label for="select-e934" class="u-label u-label-1">Выберите шаблон</label>
+                      <div class="u-form-select-wrapper">
+                        <input id="select-e934" type="search" name="sample" list="{{sample_list}}" class="u-input u-input-rectangle">
+                          <datalist id="{{sample_list}}">
+                            {% for sample in sample_list %}
+                            <option value="{{sample}}"></option>
+                            {% endfor %}
+                          </datalist>
+                      </div>
+                    </div>
+                    <div class="u-align-center u-form-group u-form-submit">
+                      <input id="sampleload" type="submit" value="Продолжить" class="u-btn u-btn-submit u-button-style">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="u-container-style u-group u-opacity u-opacity-40 u-palette-3-base u-group-5">
+              <div class="u-container-layout u-valign-bottom u-container-layout-5">
+                <h4 class="u-text u-text-default u-text-3">Создать шаблон</h4>
+                <div class="u-form u-form-2">
+                  <form action="/create_sample" method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form-1" style="padding: 10px;">
+                    <div class="u-form-group u-form-select u-label-left u-form-group-3">
+                      <label for="select-a84e" class="u-label u-spacing-15 u-label-2">Склад отгрузки</label>
+                      <div class="u-form-select-wrapper">
+                        <input id="select-a84e" type="search" name="stock" list="{{stocks_list}}" class="u-input u-input-rectangle" required="required">
+                          <datalist id="{{stocks_list}}">
+                            {% for option in stocks_list %}
+                            <option value="{{option}}"></option>
+                            {% endfor %}
+                          </datalist>
+                      </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-label-left u-form-group-4">
+                      <label for="select-59e5" class="u-label u-spacing-15 u-label-3">Получатель</label>
+                      <div class="u-form-select-wrapper">
+                        <input id="select-59e5" type="search" name="supplier" list="{{suppliers_list}}" class="u-input u-input-rectangle" required="required">
+                        <datalist id="{{suppliers_list}}">
+                          {% for option in suppliers_list %}
+                          <option value="{{option}}"></option>
+                          {% endfor %}
+                        </datalist>
+                      </div>
+                    </div>
+                    <div class="u-form-group u-form-select u-label-left u-form-group-5">
+                      <label for="select-d8fb" class="u-label u-spacing-15 u-label-4">Ценовая категория</label>
+                      <div class="u-form-select-wrapper">
+                        <input id="select-d8fb" type="search" name="categories" list="{{category_list}}" class="u-input u-input-rectangle" required="required">
+                         <datalist id="{{category_list}}">
+                          {% for option in category_list %}
+                          <option value="{{option}}"></option>
+                          {% endfor %}
+                        </datalist>
+                      </div>
+                    </div>
+                    <div class="u-form-group u-label-left u-form-group-6">
+                      <label for="text-2126" class="u-label u-spacing-15 u-label-5">Имя</label>
+                      <input type="text" placeholder="Задайте имя" id="text-2126" name="sample_name" class="u-input u-input-rectangle" required="required">
+                    </div>
+                    <div class="u-form-group u-form-submit u-label-left">
+                      <label class="u-label u-spacing-15 u-label-6"></label>
+                      <input id="samplecreate" type="submit" value="Выгрузить данные" class="u-btn u-btn-submit u-button-style">
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+{% endblock %}

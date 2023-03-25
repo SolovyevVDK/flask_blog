@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <title>{{the_title}}</title>
+    <link rel="stylesheet" href="static/css/main.css" media="screen">
+    <link id="u-page-google-font" rel="stylesheet" href="static/css/main-fonts.css">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-stick-footer u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-image u-section-1" id="sec-4dc0" data-image-width="1500" data-image-height="1000">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <div class="u-form u-form-1">
+              <form method="post" action="/main_complete" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px;">
+                <div class="u-form-date u-form-group u-label-left u-form-group-1">
+                  <label for="date-3dd9" class="u-custom-font u-font-montserrat u-label u-spacing-50 u-label-1">Введите дату</label>
+                  <input type="date" placeholder="DD/MM/YYYY" id="date-3dd9" name="date" class="u-border-none u-custom-font u-font-montserrat u-input u-input-rectangle u-input-1" required="required">
+                </div>
+                <div class="u-form-group u-form-time u-label-left u-form-group-2">
+                  <label for="time-62b4" class="u-custom-font u-font-montserrat u-label u-spacing-50 u-label-2">Время накладной</label>
+                  <input type="time" id="time-62b4" name="time" class="u-border-none u-custom-font u-font-montserrat u-input u-input-rectangle u-input-2" required="required">
+                </div>
+                <div class="u-form-group u-form-select u-label-left u-form-group-3">
+                  <label for="datalist-3" class="u-custom-font u-font-montserrat u-label u-spacing-50 u-label-3">Склад отгрузки</label>
+                  <div class="u-form-select-wrapper">
+                  <input id="datalist-3" class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="search" name="stock" list="{{stocks_list}}" required="required">
+                    <datalist id="{{stocks_list}}">
+                      {% for option in stocks_list %}
+                      <option value="{{option}}"></option>
+                      {% endfor %}
+                    </datalist>
+                  </div>
+                </div>
+                <div class="u-form-group u-form-select u-label-left u-form-group-4">
+                  <label for="select-8f39" class="u-custom-font u-font-montserrat u-label u-spacing-50 u-label-4">Получатель</label>
+                  <div class="u-form-select-wrapper">
+                    <input id="select-8f39" class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" type="search" name="supplier" list="{{suppliers_list}}" required="required">
+                      <datalist id="{{suppliers_list}}">
+                        {% for option in suppliers_list %}
+                        <option value="{{option}}"></option>
+                        {% endfor %}
+                      </datalist>
+                  </div>
+                </div>
+                <div class="u-form-group u-form-select u-label-left u-form-group-5">
+                  <label for="select-90f7" class="u-custom-font u-font-montserrat u-label u-spacing-50 u-label-5">Ценовая категория</label>
+                  <div class="u-form-select-wrapper">
+                    <input id="select-90f7" type="search" name="categories" list="{{category_list}}" class="u-custom-font u-font-montserrat u-input u-input-rectangle u-white" required="required">
+                      <datalist id="{{category_list}}">
+                        {% for option in category_list %}
+                        <option value="{{option}}"></option>
+                        {% endfor %}
+                      </datalist>
+                  </div>
+                </div>
+                  <input class="u-border-none u-btn u-btn-submit u-button-style u-custom-font u-font-montserrat u-hover-white u-btn-1" id="buttonPricelist" type="submit" value=" Выгрузить прайс-лист ">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+  
+{% endblock %}

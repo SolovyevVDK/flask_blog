@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>{{the_title}}</title>
+    <link rel="stylesheet" href="static/css/sample_main_finally.css" media="screen">
+    <meta name="generator" content="Nicepage 5.6.2, nicepage.com">
+    <meta name="referrer" content="origin">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="sample_main_finally">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-image u-section-1" id="sec-b692" data-image-width="1500" data-image-height="1000">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-valign-middle u-container-layout-1">
+            <h3 class="u-text u-text-default u-text-1">Заявка по шаблону "{{sample['name']}}"</h3>
+          </div>
+        </div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-2">
+                  <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-65 u-group-2">
+                    <div class="u-container-layout">
+                      <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                        <table class="u-table-entity">
+                          <colgroup>
+                            <col width="50%">
+                            <col width="50%">
+                          </colgroup>
+                          <tbody class="u-align-center u-table-body u-white u-table-body-1">
+                            <tr style="height: 45px;">
+                              <td class="u-border-2 u-border-grey-dark-1 u-first-column u-grey-5 u-table-cell u-table-cell-1">Склад</td>
+                              <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{sample['stock']}}</td>
+                            </tr>
+                            <tr style="height: 45px;">
+                              <td class="u-border-2 u-border-grey-dark-1 u-first-column u-grey-5 u-table-cell u-table-cell-3">Получатель</td>
+                              <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{sample['supplier']}}</td>
+                            </tr>
+                            <tr style="height: 45px;">
+                              <td class="u-border-2 u-border-grey-dark-1 u-first-column u-grey-5 u-table-cell u-table-cell-5">Категория</td>
+                              <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{sample['category']}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="u-expanded-width u-form u-form-1">
+                        <form method="post" action="/send_2" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"  name="form" style="padding: 10px;">
+                          <div class="u-form-date u-form-group u-form-group-1">
+                            <label for="date-2852" class="u-label">Дата</label>
+                            <input type="date" id="date-2852" name="date" class="u-input u-input-rectangle" required="required">
+                          </div>
+                          <div class="u-form-group u-form-time u-form-group-2">
+                            <label for="time-5fe8" class="u-label">Время</label>
+                            <input type="time" id="time-5fe8" name="time" class="u-input u-input-rectangle" required="required">
+                          </div>
+                          <div class="u-form-group u-form-textarea u-label-left u-form-group-1">
+                            <label for="textarea-5fd7" class="u-label u-spacing-50 u-label-1">Комментарий</label>
+                            <textarea rows="4" cols="50" id="textarea-5fd7" name="comment-area" class="u-input u-input-rectangle" placeholder="Введите комментарий к накладной"></textarea>
+                          </div>
+                          <div class="u-form-group u-form-group-3">
+                            <label for="text-80cf" class="u-label">Логин</label>
+                            <input type="text" placeholder="Логин от iikoOffice" id="text-80cf" name="login" class="u-input u-input-rectangle" required="required">
+                          </div>
+                          <div class="u-form-group u-form-group-4">
+                            <label for="text-ecbc" class="u-label">Пароль</label>
+                            <input type="password" placeholder="Пароль от iikoOffice" id="text-ecbc" name="password" class="u-input u-input-rectangle" required="required">
+                          </div>
+                          <div class="u-align-left u-form-group u-form-submit">
+                            <input type="submit" value="Отправить" class="u-btn u-btn-submit u-button-style">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-4">
+                  <div class="u-expanded-width u-table u-table-responsive u-table-2">
+                    <table class="u-table-entity">
+                      <colgroup>
+                        <col width="60%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="20%">
+                      </colgroup>
+                      <thead class="u-align-center u-grey-10 u-table-header u-table-header-1">
+                        <tr style="height: 49px;">
+                          <th class="u-border-2 u-border-grey-dark-1 u-table-cell">Наименование</th>
+                          <th class="u-border-2 u-border-grey-dark-1 u-table-cell">Цена</th>
+                          <th class="u-border-2 u-border-grey-dark-1 u-table-cell">Кол-во</th>
+                          <th class="u-border-2 u-border-grey-dark-1 u-table-cell">Сумма</th>
+                        </tr>
+                      </thead>
+                      <tbody class="u-table-body u-white u-table-body-2">
+                        {% for product, amount in sample['items'].items() %}
+                        <tr style="height: 49px;">
+                          <td class="u-border-2 u-border-grey-dark-1 u-table-cell" name="product">{{ product }}</td>
+                          <td class="u-border-2 u-border-grey-dark-1 u-table-cell" name="price">{{ pricelist[product]|float }}</td>
+                          <td class="u-border-2 u-border-grey-dark-1 u-table-cell" name="amount">{{ amount }}</td>
+                          <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ ((pricelist[product]|float) * (amount|float)) | round(2) }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr style="height: 49px;">
+                          <td class="u-align-right u-border-2 u-border-grey-dark-1 u-table-cell u-table-cell-15" colspan="3">Общая сумма</td>
+                          <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ all_price|float | round(2) }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+  
+{% endblock %}

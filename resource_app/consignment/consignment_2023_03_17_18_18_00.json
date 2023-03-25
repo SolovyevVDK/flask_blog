@@ -1,0 +1,21 @@
+{
+    "stock": "test_goose",
+    "supplier": "api_test",
+    "comment": "оѕя“№ “≈—“ы",
+    "date": "2023-03-17 18:18:00",
+    "summ": 2944.08,
+    "items": [
+        {
+            "product": "ћолоко 3,2%",
+            "price": 195.84,
+            "amount": 12.0,
+            "summ": 2350.08
+        },
+        {
+            "product": "яблоко",
+            "price": 237.6,
+            "amount": 2.5,
+            "summ": 594.0
+        }
+    ]
+}

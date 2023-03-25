@@ -1,0 +1,143 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 726px;
+}
+
+.u-section-1 .u-group-1 {
+  min-height: 678px;
+  margin-top: 20px;
+  margin-bottom: 28px;
+  height: auto;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px;
+}
+
+.u-section-1 .u-table-1 {
+  width: 580px;
+  margin: 0 auto;
+}
+
+.u-block-3083-6 {
+  border-style: solid;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.u-block-3083-12 {
+  height: 46px;
+}
+
+.u-section-1 .u-table-body-1 {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.u-section-1 .u-table-cell-1 {
+  border-style: solid;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.u-section-1 .u-table-cell-3 {
+  border-style: solid;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.u-section-1 .u-table-cell-5 {
+  border-style: solid;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.u-section-1 .u-table-cell-7 {
+  border-style: solid;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.u-block-3083-23 {
+  height: 46px;
+}
+
+.u-section-1 .u-btn-1 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 20px auto 0;
+  padding: 10px 106px 10px 105px;
+}
+
+.u-section-1 .u-search-1 {
+  height: auto;
+  width: 580px;
+  min-height: 40px;
+  margin: 20px auto 0;
+}
+
+.u-section-1 .u-table-2 {
+  width: 1024px;
+  margin: 20px auto 0;
+}
+
+.u-block-3083-58 {
+  height: 46px;
+}
+
+.u-section-1 .u-table-body-2 {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.u-block-3083-54 {
+  height: 46px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-group-1 {
+    height: auto;
+  }
+
+  .u-section-1 .u-table-2 {
+    width: 880px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-table-2 {
+    width: 660px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .u-section-1 .u-table-1 {
+    width: 520px;
+  }
+
+  .u-section-1 .u-search-1 {
+    width: 520px;
+  }
+
+  .u-section-1 .u-table-2 {
+    width: 520px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-table-1 {
+    width: 320px;
+  }
+
+  .u-section-1 .u-search-1 {
+    width: 320px;
+  }
+
+  .u-section-1 .u-table-2 {
+    width: 320px;
+  }
+}

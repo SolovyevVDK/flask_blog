@@ -1,0 +1,21 @@
+{
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "comment": "Тест",
+    "date": "2023-04-10 01:58:00",
+    "summ": 372.0,
+    "items": [
+        {
+            "product": "Вода Бон Аква 0,33мл",
+            "price": 180.0,
+            "amount": 1.0,
+            "summ": 180.0
+        },
+        {
+            "product": "Вода Бон Аква 0.5 мл",
+            "price": 96.0,
+            "amount": 2.0,
+            "summ": 192.0
+        }
+    ]
+}

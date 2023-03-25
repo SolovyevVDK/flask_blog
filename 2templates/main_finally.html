@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>{{the_title}}</title>
+    <link rel="stylesheet" href="static/css/main_finally.css" media="screen">
+    <meta name="generator" content="Nicepage 5.6.2, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link rel="icon" href="images/favicon.png">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site5"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="main_finally">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body class="u-body u-xl-mode" data-lang="ru">
+    <section class="u-clearfix u-section-1" id="sec-f730">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <div class="u-table u-table-responsive u-table-1">
+              <table class="u-table-entity">
+                <colgroup>
+                  <col width="50%">
+                  <col width="50%">
+                </colgroup>
+                <tbody class="u-align-center u-custom-font u-font-montserrat u-table-body u-table-body-1">
+                  <tr style="height: 48px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-custom-font u-first-column u-font-montserrat u-table-cell u-white u-table-cell-1">Дата и время</td>
+                    <td id="datetime" class="u-border-2 u-border-grey-dark-1 u-table-cell">{{date}} {{time}}</td>
+                  </tr>
+                  <tr style="height: 48px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-custom-font u-first-column u-font-montserrat u-table-cell u-white u-table-cell-3">Склад</td>
+                    <td id="chosen_stock" class="u-border-2 u-border-grey-dark-1 u-table-cell">{{stock}}</td>
+                  </tr>
+                  <tr style="height: 48px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-custom-font u-first-column u-font-montserrat u-table-cell u-white u-table-cell-5">Получатель</td>
+                    <td id="chosen_supplier" class="u-border-2 u-border-grey-dark-1 u-table-cell">{{supplier}}</td>
+                  </tr>
+                  <tr style="height: 48px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-custom-font u-first-column u-font-montserrat u-table-cell u-white u-table-cell-7">Категория</td>
+                    <td id="chosen_category" class="u-border-2 u-border-grey-dark-1 u-table-cell">{{category}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="u-container-style u-expanded-width u-grey-10 u-group u-opacity u-opacity-65 u-group-2">
+          <div class="u-container-layout u-container-layout-2">
+            <div class="u-expanded-width u-table u-table-responsive u-table-2">
+              <table class="u-table-entity">
+                <colgroup>
+                  <col width="64%">
+                  <col width="12%">
+                  <col width="12%">
+                  <col width="12%">
+                </colgroup>
+                <tbody class="u-align-center u-table-body u-white u-table-body-2">
+                  <tr style="height: 45px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">Наименование</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">Цена</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">Количество</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">Сумма</td>
+                  </tr>
+                  {% for name in order %}
+                  {% if am[name]|float != 0 %}
+                  <tr style="height: 45px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ name }}</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ pricelist[name]|float }}</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ am[name]|float }}</td>
+                    <td class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ ((pricelist[name]|float) * (am[name]|float)) | round(2) }}</td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                  <tr style="height: 45px;">
+                    <td colspan="2" class="u-border-2 u-border-grey-dark-1 u-table-cell">Общая сумма</td>
+                    <td colspan="2" class="u-border-2 u-border-grey-dark-1 u-table-cell">{{ sum | round(2) }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="u-align-center u-container-style u-grey-10 u-group u-opacity u-opacity-65 u-group-3">
+          <div class="u-container-layout u-valign-top u-container-layout-3">
+            <p class="u-text u-text-custom-color-1 u-text-default u-text-1">Перед отправкой убедитесь в корректности введенных данных</p>
+            <div class="u-expanded-width u-form u-form-1">
+              <form method="post" action="/send" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                <div class="u-form-group u-form-textarea u-label-left u-form-group-1">
+                  <label for="textarea-5fd7" class="u-label u-spacing-50 u-label-1">Комментарий</label>
+                  <textarea rows="4" cols="50" id="textarea-5fd7" name="comment-area" class="u-input u-input-rectangle" placeholder="Введите комментарий к накладной"></textarea>
+                </div>
+                <div class="u-form-group u-form-name u-label-left">
+                  <label for="name-5443" class="u-label u-spacing-50 u-label-2">Логин</label>
+                  <input type="text" placeholder="Логин от iikoOffice" id="name-5443" name="login" class="u-input u-input-rectangle" required="required">
+                </div>
+                <div class="u-form-group u-label-left">
+                  <label for="email-5443" class="u-label u-spacing-50 u-label-3">Пароль</label>
+                  <input type="password" placeholder="Пароль от iikoOffice" id="email-5443" name="password" class="u-input u-input-rectangle" required="required">
+                </div>
+                <div class="u-form-group u-form-submit u-label-left">
+                  <label class="u-label u-spacing-50 u-label-4"></label>
+                  <input type="submit" value="Отправить заявку" class="u-btn u-btn-submit u-button-style">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+  
+{% endblock %}

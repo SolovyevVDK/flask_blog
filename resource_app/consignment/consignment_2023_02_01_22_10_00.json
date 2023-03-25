@@ -1,0 +1,33 @@
+{
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "comment": "Коммент с сайта",
+    "date": "2023-02-01T22:10:00",
+    "summ": 1305.005,
+    "items": [
+        {
+            "product": "Банан",
+            "price": 105.88,
+            "amount": 2.0,
+            "summ": 211.76
+        },
+        {
+            "product": "Вода Бон Аква 0,33мл",
+            "price": 127.5,
+            "amount": 3.0,
+            "summ": 382.5
+        },
+        {
+            "product": "Йогурт",
+            "price": 130.56,
+            "amount": 3.0,
+            "summ": 391.68
+        },
+        {
+            "product": "Кофе зерновой",
+            "price": 1063.55,
+            "amount": 0.3,
+            "summ": 319.065
+        }
+    ]
+}

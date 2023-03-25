@@ -1,0 +1,11 @@
+{
+    "name": "21031129",
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "category": "надбавка 20%",
+    "items": {
+        "Американо": "on",
+        "Банан": "on",
+        "Булочка": "on"
+    }
+}

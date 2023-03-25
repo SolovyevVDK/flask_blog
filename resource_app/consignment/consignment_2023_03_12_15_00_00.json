@@ -1,0 +1,27 @@
+{
+    "stock": "Заявка",
+    "supplier": "api_test",
+    "comment": "ТЕСТЫ Тксты",
+    "date": "2023-03-12 15:00:00",
+    "summ": 993.48,
+    "items": [
+        {
+            "product": "Банан",
+            "price": 149.48,
+            "amount": 1.0,
+            "summ": 149.48
+        },
+        {
+            "product": "Булочка",
+            "price": 120.0,
+            "amount": 1.0,
+            "summ": 120.0
+        },
+        {
+            "product": "Груша",
+            "price": 289.6,
+            "amount": 2.5,
+            "summ": 724.0
+        }
+    ]
+}

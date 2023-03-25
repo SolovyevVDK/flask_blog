@@ -1,0 +1,27 @@
+{
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "comment": "шаблоун тест",
+    "date": "2023-03-17 19:20:00",
+    "summ": 1291.9,
+    "items": [
+        {
+            "product": "Банан",
+            "price": 149.48,
+            "amount": 1.0,
+            "summ": 149.48
+        },
+        {
+            "product": "Кофе зерновой",
+            "price": 1501.49,
+            "amount": 0.5,
+            "summ": 750.75
+        },
+        {
+            "product": "Молоко 3,2%",
+            "price": 195.84,
+            "amount": 2.0,
+            "summ": 391.68
+        }
+    ]
+}

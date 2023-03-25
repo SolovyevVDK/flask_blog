@@ -1,0 +1,27 @@
+{
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "comment": "Комментарий",
+    "date": "2023-02-15 18:00:00",
+    "summ": 293.44,
+    "items": [
+        {
+            "product": "Банан",
+            "price": 105.88,
+            "amount": 1.0,
+            "summ": 105.88
+        },
+        {
+            "product": "Булочка",
+            "price": 85.0,
+            "amount": 1.0,
+            "summ": 85.0
+        },
+        {
+            "product": "Груша",
+            "price": 205.13,
+            "amount": 0.5,
+            "summ": 102.56
+        }
+    ]
+}

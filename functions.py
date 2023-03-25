@@ -260,7 +260,7 @@ def data(date, sup, stock, pricelist, amountlist, comments):
     defaultStoreId = ET.SubElement(document, 'defaultStoreId')
     defaultStoreId.text = stock_name[stock]
     comment = ET.SubElement(document, 'comment')
-    comment.text = comments
+    comment.text = 'Сайт. ' + comments
     items = ET.SubElement(document, 'items')
     for key, value in pricelist.items():
         item = ET.SubElement(items, 'item')
@@ -279,8 +279,33 @@ def data(date, sup, stock, pricelist, amountlist, comments):
         discountSum.text = '0'  # скидка
         sum.text = str(float(value) * float(amountlist[key]))  # сумма (цена * количество)
     new_doc = ET.tostring(document)
-    with open(Path(path_to_consignment, f'consignment_{dateto}_{timedata}.xml'), 'w', encoding=encod) as file:
-        file.write(str(new_doc))
+
+    elements = []
+    allsumm = 0
+    for k, v in pricelist.items():
+        el = {
+            "product": k,
+            "price": float(v),
+            "amount": float(amountlist[k]),
+            "summ": round((float(float(v) * float(amountlist[k]))), 2)
+        }
+        elements.append(el)
+        allsumm += float(float(v) * float(amountlist[k]))
+
+    manifesto = {
+        "stock": stock,
+        "supplier": sup,
+        "comment": comments,
+        "date": (str(date)).replace('T', ' '),
+        "summ": round(allsumm, 2),
+        "items": elements
+    }
+    dvk = ((str(date)).split("T"))[0].replace("-", "_")
+    tvk = ((str(date)).split("T"))[1].replace(":", "_")
+    with open(Path(path_to_consignment,
+                   f'consignment_{dvk}_{tvk}.json'),
+              'w', encoding=encod) as file:
+        json.dump(manifesto, file, indent=4, ensure_ascii=False)
     return new_doc
 
 
@@ -291,3 +316,21 @@ def post(token, doc):
     headers = {'Content-Type': 'application/xml'}
     answer = str(requests.post(post_url, data=doc, headers=headers))
     return answer
+
+
+def invoice_by_number(token, num):
+    out_url = (
+            protocol + '://' + server + ':' + port + bd + '/api/documents/export/outgoingInvoice/byNumber?key='
+            + token.text + '&number=' + num + '&currentYear=true'
+    )
+    invoice = requests.get(out_url).text
+    return invoice
+
+
+def all_invoices(token, supid):
+    url = (
+            protocol + '://' + server + ':' + port + bd + '/api/documents/export/outgoingInvoice?key='
+            + token.text + '&from=2023-01-01&to=2023-16-02' + '&supplierId=' + supid
+    )
+    invoices = requests.get(url).text
+    return invoices

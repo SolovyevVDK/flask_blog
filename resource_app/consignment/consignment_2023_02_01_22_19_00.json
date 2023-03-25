@@ -1,0 +1,33 @@
+{
+    "stock": "test_goose",
+    "supplier": "Metro",
+    "comment": "Коммент с сайта",
+    "date": "2023-02-01 22:19:00",
+    "summ": 1547.44,
+    "items": [
+        {
+            "product": "Банан",
+            "price": 149.48,
+            "amount": 2.0,
+            "summ": 298.96
+        },
+        {
+            "product": "Булочка",
+            "price": 120.0,
+            "amount": 2.0,
+            "summ": 240.0
+        },
+        {
+            "product": "Груша",
+            "price": 289.6,
+            "amount": 0.3,
+            "summ": 86.88
+        },
+        {
+            "product": "Йогурт",
+            "price": 184.32,
+            "amount": 5.0,
+            "summ": 921.6
+        }
+    ]
+}

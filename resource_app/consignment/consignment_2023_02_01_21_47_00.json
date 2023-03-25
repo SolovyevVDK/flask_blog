@@ -1,0 +1,18 @@
+{
+    "stock": "test_goose",
+    "supplier": "api_test",
+    "comment": "Коммент с сайта",
+    "date": "2023-02-01T21:47:00",
+    "items": [
+        {
+            "product": "Банан",
+            "price": 149.48,
+            "amount": "4"
+        },
+        {
+            "product": "Вода Бон Аква 0,33мл",
+            "price": 180,
+            "amount": "2"
+        }
+    ]
+}
