@@ -82,7 +82,7 @@ def main_page() -> 'html':
                                ex=ex)
 
 
-@app.route("/main_complete", methods=['post', 'get'])
+@app.route("/ilist", methods=['post', 'get'])
 def main_page_1() -> 'html':
     try:
         global chosen_stock, chosen_supplier, chosen_category, pricelist
@@ -92,12 +92,9 @@ def main_page_1() -> 'html':
         pricelist = read_category_price(chosen_category)
         pricelist = dict(sorted(pricelist.items()))
         order = list(pricelist.keys())
-        return render_template("main_complete.html",
+        return render_template("position_list.html",
                                the_title='Бланк заявки',
-                               datetime_now=date_now,
-                               stock=chosen_stock,
-                               supplier=chosen_supplier,
-                               category=chosen_category,
+                               action='check',
                                pricelist=pricelist,
                                order=order)
     except Exception as ex:
