@@ -13,22 +13,6 @@ import hashlib
 login = 'admin'  # Со страницы авторизации
 password = 'restoRtest'  # Со страницы авторизации
 token = auth(login, password)  # Функция получения токена, написана в файле
-# print(invoice_by_number(token, '0005'))
-suppliers = read_suppliers()
-invoices_number_list = []
-invoices_date_list = []
-invoices_counteragentId_list = []
-for name, id in suppliers.items():
-    invoices = all_invoices(token, supid=id)
-    soup = BeautifulSoup(invoices, 'xml')
-    for num in soup.find_all('documentNumber'):
-        invoices_number_list.append(num.text)
 
-    for dateIncoming in soup.find_all('dateIncoming'):
-        invoices_date_list.append(dateIncoming.text)
-
-    for counteragentId in soup.find_all('counteragentId'):
-        invoices_counteragentId_list.append(counteragentId.text)
-
-print(invoices_number_list)
+print(token.text)
 logout(token)

@@ -11396,6 +11396,101 @@
         ]
     },
     {
+        "id": "d08de340-f545-458d-85fb-8754e3373fee",
+        "dateIncoming": "2023-04-03",
+        "documentNumber": "0003",
+        "status": "PROCESSED",
+        "shortName": "",
+        "deletePreviousMenu": false,
+        "dateTo": "2500-01-01",
+        "items": [
+            {
+                "num": 1,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "3c8aafec-50b3-4b0e-975b-542ad47af4a2",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 2,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "2e97166f-da07-4346-841b-b6816794894f",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 3,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "66cfadb5-c386-471e-beab-26bed3d9349d",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 4,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "75465027-d613-4d78-aac0-761748a5442e",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 5,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "883f6307-7460-4e3a-bdd3-01295fa7c3aa",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 6,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "e7542c1b-3d0c-44c0-ba3a-73071b05b29a",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            },
+            {
+                "num": 7,
+                "departmentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+                "productId": "a9db790c-c423-40a5-8561-6ed606c14b68",
+                "productSizeId": null,
+                "including": true,
+                "price": 0,
+                "dishOfDay": false,
+                "flyerProgram": false,
+                "pricesForCategories": [],
+                "includeForCategories": []
+            }
+        ]
+    },
+    {
         "id": "49c4b08f-a89d-4ee2-96c3-da38caa800db",
         "dateIncoming": "2022-10-06",
         "documentNumber": "0002",

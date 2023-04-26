@@ -3,10 +3,10 @@ import os
 import requests
 import hashlib
 from bs4 import BeautifulSoup
+from pathlib import Path
 import xml.etree.ElementTree as ET
 from variables import protocol, server, port, bd, days_per_order
 from datetime import datetime, timedelta
-from pathlib import Path
 
 datetime_string = str(datetime.isoformat(datetime.now()))
 date_now = datetime_string[0:-7:]
@@ -20,16 +20,25 @@ path_to_samples = Path(Path.cwd(), 'resource_app', 'samples')
 encod = 'cp1251'
 
 
+def read_server_data():
+    with open(Path(path_to_txt, 'zerver_data.json'), encoding=encod) as file:
+        server_data = json.load(file)
+    return server_data
+
+
 # Получение токена
-def auth(login, password):
+def auth(login, password, server_data):
     sha1pass = hashlib.sha1(password.encode('utf-8')).hexdigest()
-    auth_url = (protocol + '://' + server + ':' + port + bd + '/api/auth?login=' + login + '&pass=' + sha1pass)
+    auth_url = (server_data['protocol'] + '://' +
+                server_data['server'] + ':' +
+                server_data['port'] +
+                server_data['bd'] + '/api/auth?login=' + login + '&pass=' + sha1pass)
     token = requests.get(auth_url)
     return token
 
 
 # Закрытие токена
-def logout(token):
+def logout(token, server_data):
     out_url = (protocol + '://' + server + ':' + port + bd + '/api/logout?key=' + token.text)
     requests.get(out_url)
 

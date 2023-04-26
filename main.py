@@ -35,7 +35,7 @@ app = Flask(__name__)
 # Определите базовый маршрут URI и функцию.
 @app.route('/auth', methods=['post', 'get'])
 def auth_page() -> 'html':
-    with open(Path(path_to_txt, 'synch.txt'), 'r', encoding=encod) as file:
+    with open(Path(path_to_txt, 'zynch.txt'), 'r', encoding=encod) as file:
         synch_time = file.read()
     try:
         return render_template('auth.html',
@@ -49,7 +49,7 @@ def auth_page() -> 'html':
 
 @app.route("/", methods=['post', 'get'])
 def main_page() -> 'html':
-    with open(Path(path_to_txt, 'synch.txt'), 'r', encoding=encod) as file:
+    with open(Path(path_to_txt, 'zynch.txt'), 'r', encoding=encod) as file:
         synch_time = file.read()
     try:
         cat = os.path.exists(Path(path_to_txt, 'category.txt'))
@@ -178,7 +178,7 @@ def send() -> str:
 def synch() -> 'html':
     try:
         synch_time = (str(datetime.now()))[0:-7]
-        with open(Path(path_to_txt, 'synch.txt'), 'w', encoding=encod) as file:
+        with open(Path(path_to_txt, 'zynch.txt'), 'w', encoding=encod) as file:
             file.write(str(synch_time.replace(' ', 'T')))
         login = request.form['login']
         password = request.form['password']
