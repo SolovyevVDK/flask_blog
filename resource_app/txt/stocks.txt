@@ -1,9 +1,51 @@
-{
-    "test_goose": "364c0e2a-350d-4992-bcd2-aca1590f88af",
-    "Заявка": "b765374c-1c8c-404a-893b-67d708a7ed13",
-    "Кофе": "453d401c-1e0b-4914-846c-cfa57ce096da",
-    "Склад бар": "788ac289-bc12-4c97-a0be-7c39d53837c5",
-    "Склад кухня": "c15ac296-8155-4271-8a37-67f1a6683fa6",
-    "склад бара 2": "d6ed4fd6-c8c9-4c8e-b7f4-2adbc24cf0d0",
-    "склад кухни": "fa610649-e1d4-498f-a266-f20ab663721e"
-}
+[
+    {
+        "id": "364c0e2a-350d-4992-bcd2-aca1590f88af",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": null,
+        "name": "test_goose",
+        "type": "STORE"
+    },
+    {
+        "id": "b765374c-1c8c-404a-893b-67d708a7ed13",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": null,
+        "name": "Заявка",
+        "type": "STORE"
+    },
+    {
+        "id": "453d401c-1e0b-4914-846c-cfa57ce096da",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": "006",
+        "name": "Кофе",
+        "type": "STORE"
+    },
+    {
+        "id": "788ac289-bc12-4c97-a0be-7c39d53837c5",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": "002",
+        "name": "Склад бар",
+        "type": "STORE"
+    },
+    {
+        "id": "c15ac296-8155-4271-8a37-67f1a6683fa6",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": "001",
+        "name": "Склад кухня",
+        "type": "STORE"
+    },
+    {
+        "id": "d6ed4fd6-c8c9-4c8e-b7f4-2adbc24cf0d0",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": "007",
+        "name": "склад бара 2",
+        "type": "STORE"
+    },
+    {
+        "id": "fa610649-e1d4-498f-a266-f20ab663721e",
+        "parentId": "1e7cdd77-f7f3-91ea-0171-57bade510010",
+        "code": "080",
+        "name": "склад кухни",
+        "type": "STORE"
+    }
+]
